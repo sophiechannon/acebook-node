@@ -1,6 +1,7 @@
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
+const { flash } = require('express-flash-message');
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
@@ -11,7 +12,10 @@ const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 
+
 const app = express();
+
+
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -36,6 +40,23 @@ app.use(
     },
   })
 );
+
+// flash messages
+
+// app.use(flash({ sessionKeyName: 'flashMessage' }));
+
+// app.get('/flash', async function (req, res) {
+//   // Set a flash message by passing the key, followed by the value, to req.flash().
+//   await req.flash('info', 'Flash is back!');
+//   res.redirect('/');
+// });
+
+// unsure whethr needed
+// app.get('/', async function (req, res) {
+//   // Get an array of flash message by passing the key to req.consumeFlash()
+//   const messages = await req.consumeFlash('info');
+//   res.render('index', { messages });
+// });
 
 // clear the cookies after user logs out
 app.use((req, res, next) => {

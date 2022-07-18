@@ -6,9 +6,15 @@ const UserSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    lowercase: true
-  },
-  password: String,
+    // unique: true,
+    // trim: true,
+    lowercase: true,
+    validate: {
+      validator: v => /.+\@.+\..+/.test(v),
+      message: "INVALID EMAIL"
+      }
+    },
+    password: String,
 });
 
 const User = mongoose.model("User", UserSchema);

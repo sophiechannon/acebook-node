@@ -73,4 +73,18 @@ describe("User model", () => {
       });
     });
   });
+
+  it("fails if email invalid", async() => {
+    try {
+      await new User({
+        firstname: "Mongo",
+        lastname: "Goose",
+        email: "someone@example",
+        password: "password",
+      }).save();  
+    } catch (e) {
+      console.log(e.errors.email.message);
+      expect(e.errors.email.message).toEqual("INVALID EMAIL");
+    }
+  });
 });

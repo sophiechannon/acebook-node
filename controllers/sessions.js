@@ -11,7 +11,7 @@ const SessionsController = {
     const password = req.body.password;
 
     User.findOne({ email: email }).then((user) => {
-      if (!user) {
+      if (!user) {  
         res.redirect("/sessions/new");
       } else if (user.password != password) {
         
