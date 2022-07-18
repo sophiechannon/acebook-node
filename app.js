@@ -6,16 +6,16 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
-
 const homeRouter = require("./routes/home");
 const postsRouter = require("./routes/posts");
 const sessionsRouter = require("./routes/sessions");
 const usersRouter = require("./routes/users");
 
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const flash = require('connect-flash');
 
 const app = express();
-
-
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -41,9 +41,11 @@ app.use(
   })
 );
 
+app.use(flash());
+app.use(session({}));
 // flash messages
 
-app.use(flash({ sessionKeyName: 'flashMessage' }));
+// app.use(flash({ sessionKeyName: 'flashMessage' }));
 
 // app.get('/flash', async function (req, res) {
 //   // Set a flash message by passing the key, followed by the value, to req.flash().
