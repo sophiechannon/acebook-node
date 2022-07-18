@@ -43,19 +43,19 @@ app.use(
 
 // flash messages
 
-// app.use(flash({ sessionKeyName: 'flashMessage' }));
+app.use(flash({ sessionKeyName: 'flashMessage' }));
 
 // app.get('/flash', async function (req, res) {
 //   // Set a flash message by passing the key, followed by the value, to req.flash().
-//   await req.flash('info', 'Flash is back!');
+//   await req.flash('info', 'INVALID EMAIL');
 //   res.redirect('/');
 // });
 
-// unsure whethr needed
+// unsure whether needed
 // app.get('/', async function (req, res) {
 //   // Get an array of flash message by passing the key to req.consumeFlash()
 //   const messages = await req.consumeFlash('info');
-//   res.render('index', { messages });
+//   res.render('users/new', { message });
 // });
 
 // clear the cookies after user logs out

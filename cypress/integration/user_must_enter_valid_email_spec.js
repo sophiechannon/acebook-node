@@ -10,9 +10,7 @@ describe("Registration", () => {
     cy.get("#email").type("someone@example");
     cy.get("#password").type("password");
     cy.get("#submit").click();
-
-    cy.url().should("include", "/users/new");
-    cy.get(".email-error").should("have.text", "EMAIL NOT VALID");
+    cy.get(".email-error").should("have.text", "INVALID EMAIL");
   });
 });
 

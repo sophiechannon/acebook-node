@@ -9,6 +9,7 @@ const UsersController = {
     const user = new User(req.body);
     user.save((err) => {
       if (err) {
+        res.redirect('/users/new')
         req.flash('email-error-message', 'EMAIL NOT VALID');
         throw err;
       }
