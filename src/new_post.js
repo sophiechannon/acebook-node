@@ -26,7 +26,10 @@ class NewPost extends React.Component {
   // };
 
   handleChange() {
-    // something here
+    // next steps:
+    // when you add a post, it displays on the page
+    // when you add a post, it goes to the database
+    // the new post is displayed with the other posts from the database.
   }
 
   render() {
