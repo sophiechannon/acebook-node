@@ -17,9 +17,9 @@ describe("Timeline", () => {
       .type("Second post, should appear first");
     cy.get("#new-post-form").submit();
 
-    cy.get(".post-text")
-      .first()
-      .should("have.text", "Second post, should appear first, Mongo");
+    cy.get(".posts > :nth-child(2)").should(
+      "have.text",
+      "Second post, should appear first, Mongo"
+    );
   });
 });
-
