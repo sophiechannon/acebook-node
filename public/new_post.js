@@ -17,22 +17,20 @@ var NewPost = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (NewPost.__proto__ || Object.getPrototypeOf(NewPost)).call(this, props));
 
     console.log(props);
-    _this.state = { likes: null };
+    _this.state = { postText: null };
     return _this;
   }
 
-  // addPost = () => {
+  // addLike = () => {
   //   let newCount = this.state.likes + 1;
   //   this.setState({
   //     likes: newCount,
   //   });
-  //   // Retrieve Likes
   //   fetch(`/posts/updatelikes/${this.props.postId}`, {
   //     method: "POST",
   //   });
   // };
 
-  // lifecyle method
   // componentDidMount = () => {
   //   fetch(`/posts/viewlikes/${this.props.postId}`)
   //     .then((response) => response.json())
@@ -42,13 +40,18 @@ var NewPost = function (_React$Component) {
   // };
 
   _createClass(NewPost, [{
+    key: "handleChange",
+    value: function handleChange() {
+      // something here
+    }
+  }, {
     key: "render",
     value: function render() {
       return React.createElement(
-        "button",
-        { "class": "like-button", onClick: this.addLike },
-        "Likes: ",
-        this.state.likes
+        "form",
+        { onSubmit: this.handleSubmit },
+        React.createElement("textarea", { rows: "4", cols: "50", value: this.state.value, onChange: this.handleChange }),
+        React.createElement("input", { type: "submit", value: "New Post" })
       );
     }
   }]);
@@ -59,6 +62,5 @@ var NewPost = function (_React$Component) {
 // in order to render the like button for all posts, we must iterate through all instances of the element
 
 
-document.querySelectorAll(".like-button-container").forEach(function (domContainer) {
-  ReactDOM.render(React.createElement(LikeButton, domContainer.dataset), domContainer);
-});
+var domContainer = document.querySelector(".new-post-container");
+ReactDOM.render(React.createElement(NewPost, null), domContainer);
