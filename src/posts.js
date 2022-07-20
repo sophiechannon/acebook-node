@@ -8,21 +8,28 @@ class Posts extends React.Component {
   }
 
   componentDidMount = () => {
-    fetch(`/posts/getposts`)
+    console.log(this.state)
+    fetch(`/posts/getposts`, {
+        headers : { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      })
       .then((response) => response.json())
       .then((responseJson) => {
-        this.setState({ 
-          responseJson
-        });
+        this.setState({
+          body: responseJson
       });
+      });
+    console.log(this.state)
   };
 
   render() {
     if (this.state != null) {
       return (
         <ul>
-        {this.state.posts.map(post => (
-          <li class="individual-post" key={post.id}>{post.firstname}</li>
+        {this.state.body.posts.map(post => (
+          <li key={post._id}> {post.firstname}, {post.message}, Created at: {post.createdAt} </li>
         ))}
       </ul>
       )

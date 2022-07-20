@@ -17,13 +17,20 @@ var Posts = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Posts.__proto__ || Object.getPrototypeOf(Posts)).call(this, props));
 
     _this.componentDidMount = function () {
-      fetch("/posts/getposts").then(function (response) {
+      console.log(_this.state);
+      fetch('/posts/getposts', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      }).then(function (response) {
         return response.json();
       }).then(function (responseJson) {
         _this.setState({
-          responseJson: responseJson
+          body: responseJson
         });
       });
+      console.log(_this.state);
     };
 
     _this.state = null;
@@ -32,17 +39,23 @@ var Posts = function (_React$Component) {
   }
 
   _createClass(Posts, [{
-    key: "render",
+    key: 'render',
     value: function render() {
       if (this.state != null) {
         return React.createElement(
-          "ul",
+          'ul',
           null,
-          this.state.posts.map(function (post) {
+          this.state.body.posts.map(function (post) {
             return React.createElement(
-              "li",
-              { "class": "individual-post", key: post.id },
-              post.firstname
+              'li',
+              { key: post._id },
+              ' ',
+              post.firstname,
+              ', ',
+              post.message,
+              ', Created at: ',
+              post.createdAt,
+              ' '
             );
           })
         );

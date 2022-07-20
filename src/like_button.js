@@ -37,4 +37,3 @@ document.querySelectorAll(".like-button-container")
   .forEach(domContainer => {
     ReactDOM.render(<LikeButton {...domContainer.dataset} />, domContainer);
   })
-

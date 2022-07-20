@@ -1,0 +1,227 @@
+{
+  "posts": [
+    {
+      "comments": [],
+      "_id": "62d820337e71656559b7e04a",
+      "createdAt": "2022-07-20T15:33:07.782Z",
+      "message": "hello",
+      "firstname": "Me",
+      "likes": 0,
+      "updatedAt": "2022-07-20T15:33:07.782Z",
+      "__v": 0
+    },
+    {
+      "comments": [],
+      "_id": "62d8152b2a027b52e2a1cf15",
+      "createdAt": "2022-07-20T14:46:03.062Z",
+      "message": "Will it post?",
+      "firstname": "Me",
+      "likes": 0,
+      "updatedAt": "2022-07-20T14:46:03.062Z",
+      "__v": 0
+    },
+    {
+      "comments": [],
+      "_id": "62d8108f951e554a37d8e0f2",
+      "createdAt": "2022-07-20T14:26:23.570Z",
+      "message": "GO AWAY",
+      "firstname": "Me",
+      "likes": 0,
+      "updatedAt": "2022-07-20T14:26:23.570Z",
+      "__v": 0
+    },
+    {
+      "comments": [],
+      "_id": "62d81088951e554a37d8e0da",
+      "createdAt": "2022-07-20T14:26:16.620Z",
+      "message": "EMPTY",
+      "firstname": "Me",
+      "likes": 0,
+      "updatedAt": "2022-07-20T14:26:16.620Z",
+      "__v": 0
+    },
+    {
+      "comments": [],
+      "_id": "62d8105dce105349bbacd3ca",
+      "createdAt": "2022-07-20T14:25:33.500Z",
+      "message": "hello",
+      "firstname": "Me",
+      "likes": 0,
+      "updatedAt": "2022-07-20T14:25:33.500Z",
+      "__v": 0
+    },
+    {
+      "comments": [],
+      "_id": "62d8104ece105349bbacd3b4",
+      "createdAt": "2022-07-20T14:25:18.479Z",
+      "message": "empty inside </3",
+      "firstname": "Me",
+      "likes": 0,
+      "updatedAt": "2022-07-20T14:25:18.479Z",
+      "__v": 0
+    },
+    {
+      "comments": [],
+      "_id": "62d8100bf0a46248e8b6dfcf",
+      "createdAt": "2022-07-20T14:24:11.164Z",
+      "message": "Why twice?",
+      "firstname": "Me",
+      "likes": 0,
+      "updatedAt": "2022-07-20T14:24:11.164Z",
+      "__v": 0
+    },
+    {
+      "comments": [],
+      "_id": "62d8100bf0a46248e8b6dfca",
+      "createdAt": "2022-07-20T14:24:11.030Z",
+      "message": "Why twice?",
+      "firstname": "Me",
+      "likes": 0,
+      "updatedAt": "2022-07-20T14:24:11.030Z",
+      "__v": 0
+    },
+    {
+      "comments": [],
+      "_id": "62d8100af0a46248e8b6dfc5",
+      "createdAt": "2022-07-20T14:24:10.879Z",
+      "message": "Why twice?",
+      "firstname": "Me",
+      "likes": 0,
+      "updatedAt": "2022-07-20T14:24:10.879Z",
+      "__v": 0
+    },
+    {
+      "comments": [],
+      "_id": "62d8100af0a46248e8b6dfc0",
+      "createdAt": "2022-07-20T14:24:10.738Z",
+      "message": "Why twice?",
+      "firstname": "Me",
+      "likes": 0,
+      "updatedAt": "2022-07-20T14:24:10.738Z",
+      "__v": 0
+    },
+    {
+      "comments": [],
+      "_id": "62d8100af0a46248e8b6dfbb",
+      "createdAt": "2022-07-20T14:24:10.601Z",
+      "message": "Why twice?",
+      "firstname": "Me",
+      "likes": 0,
+      "updatedAt": "2022-07-20T14:24:10.601Z",
+      "__v": 0
+    },
+    {
+      "comments": [],
+      "_id": "62d81009f0a46248e8b6dfb6",
+      "createdAt": "2022-07-20T14:24:09.350Z",
+      "message": "Why twice?",
+      "firstname": "Me",
+      "likes": 0,
+      "updatedAt": "2022-07-20T14:24:09.350Z",
+      "__v": 0
+    },
+    {
+      "comments": [],
+      "_id": "62d81008f0a46248e8b6dfb1",
+      "createdAt": "2022-07-20T14:24:08.390Z",
+      "message": "Why twice?",
+      "firstname": "Me",
+      "likes": 0,
+      "updatedAt": "2022-07-20T14:24:08.390Z",
+      "__v": 0
+    },
+    {
+      "comments": [],
+      "_id": "62d81006f0a46248e8b6dfac",
+      "createdAt": "2022-07-20T14:24:06.339Z",
+      "message": "Why twice?",
+      "firstname": "Me",
+      "likes": 0,
+      "updatedAt": "2022-07-20T14:24:06.339Z",
+      "__v": 0
+    },
+    {
+      "comments": [],
+      "_id": "62d80fddf0a46248e8b6df9f",
+      "createdAt": "2022-07-20T14:23:25.978Z",
+      "message": "New react post",
+      "firstname": "Me",
+      "likes": 0,
+      "updatedAt": "2022-07-20T14:23:25.978Z",
+      "__v": 0
+    },
+    {
+      "comments": [],
+      "_id": "62d80fdaf0a46248e8b6df9a",
+      "createdAt": "2022-07-20T14:23:22.891Z",
+      "message": "New react post",
+      "firstname": "Me",
+      "likes": 0,
+      "updatedAt": "2022-07-20T14:23:22.891Z",
+      "__v": 0
+    },
+    {
+      "comments": [],
+      "_id": "62d6bcd63ef70671cdd0e465",
+      "createdAt": "2022-07-19T14:16:54.195Z",
+      "message": "waddup",
+      "firstname": "mongo",
+      "likes": 5,
+      "updatedAt": "2022-07-19T16:43:15.307Z",
+      "__v": 0
+    },
+    {
+      "comments": [],
+      "_id": "62d6baa56e3b486e61027c73",
+      "createdAt": "2022-07-19T14:07:33.250Z",
+      "message": "Another post from a legend",
+      "firstname": "mongo",
+      "likes": 11,
+      "updatedAt": "2022-07-20T09:54:42.008Z",
+      "__v": 0
+    },
+    {
+      "comments": [],
+      "_id": "62d50906337f3cb686eb59e1",
+      "createdAt": "2022-07-18T07:17:26.339Z",
+      "message": "First post",
+      "firstname": "mongo",
+      "likes": 8,
+      "updatedAt": "2022-07-19T15:47:50.171Z",
+      "__v": 0
+    }
+  ],
+  "comments": [
+    {
+      "_id": "62d16ff9f39c4f2b37ec467b",
+      "commentMessage": "This is a comment on the first post",
+      "post": "62d16ff3f39c4f2b37ec4678",
+      "__v": 0,
+      "createdAt": "2022-07-20T16:09:20.072Z"
+    },
+    {
+      "_id": "62d170c3ad6a0133c5028505",
+      "commentMessage": "first comment",
+      "post": "62d170bead6a0133c5028500",
+      "createdAt": "2022-07-15T13:50:59.149Z",
+      "updatedAt": "2022-07-15T13:50:59.149Z",
+      "__v": 0
+    },
+    {
+      "_id": "62d170eead6a0133c502850f",
+      "commentMessage": "second comment",
+      "post": "62d170bead6a0133c5028500",
+      "createdAt": "2022-07-15T13:51:42.201Z",
+      "updatedAt": "2022-07-15T13:51:42.201Z",
+      "__v": 0
+    },
+    {
+      "_id": "62d1903bc0b3fa43c5ab4f66",
+      "commentMessage": "Her is a comment",
+      "post": "62d170bead6a0133c5028500",
+      "createdAt": "2022-07-15T16:05:15.972Z",
+      "updatedAt": "2022-07-15T16:05:15.972Z",
+      "__v": 0
+    }
+  ]
+}
