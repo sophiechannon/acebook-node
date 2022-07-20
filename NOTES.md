@@ -50,3 +50,7 @@ var domContainer = document.querySelector(“.delete-button-container”);
   },
 
   */
+
+- - - - - - - - - - - - - - 
+
+previous index.hbs code

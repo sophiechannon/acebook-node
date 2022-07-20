@@ -8,10 +8,9 @@ class DeleteButton extends React.Component {
 
   addDelete = () => {
     this.setState({ status: 'Delete successful' });
+    fetch(`/posts/deletepost/${this.props.postId}`, { method: 'POST' })
   };
 
-   // lifecyle method
-   
   componentDidMount() {
     fetch(`/posts/deletepost/${this.props.postId}`, { method: 'POST' })
       .then(() => this.setState({

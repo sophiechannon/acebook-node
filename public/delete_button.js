@@ -18,6 +18,7 @@ var DeleteButton = function (_React$Component) {
 
     _this.addDelete = function () {
       _this.setState({ status: 'Delete successful' });
+      fetch('/posts/deletepost/' + _this.props.postId, { method: 'POST' });
     };
 
     _this.state = { status: 'Delete' };
@@ -26,10 +27,6 @@ var DeleteButton = function (_React$Component) {
 
   _createClass(DeleteButton, [{
     key: 'componentDidMount',
-
-
-    // lifecyle method
-
     value: function componentDidMount() {
       var _this2 = this;
 
