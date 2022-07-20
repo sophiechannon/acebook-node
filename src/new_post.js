@@ -23,20 +23,8 @@ class NewPost extends React.Component {
         },
       body: JSON.stringify(this.state),
     });
+    this.setState({value: ""})
   }
-
-
-
-
-  // addLike = () => {
-  //   let newCount = this.state.likes + 1;
-  //   this.setState({
-  //     likes: newCount,
-  //   });
-  //   fetch(`/posts/updatelikes/${this.props.postId}`, {
-  //     method: "POST",
-  //   });
-  // };
 
   // componentDidMount = () => {
   //   fetch(`/posts/viewlikes/${this.props.postId}`)
@@ -47,8 +35,6 @@ class NewPost extends React.Component {
   // };
 
     // next steps:
-    // when you add a post, it displays on the page
-    // when you add a post, it goes to the database
     // the new post is displayed with the other posts from the database.
   
 
