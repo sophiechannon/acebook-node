@@ -25,8 +25,8 @@ export function submitPost() {
 
 export function submitComment() {
   cy.visit("/posts");
-  cy.get(":nth-child(6)").type("Example comment from Cypress Testing");
-  cy.get(":nth-child(7)").click();
+  cy.get(":nth-child(7)").type("Example comment from Cypress Testing");
+  cy.get(":nth-child(8)").click();
   cy.get(".posts")
     .first()
     .get(".comment-message-text")
