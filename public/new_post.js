@@ -16,45 +16,64 @@ var NewPost = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (NewPost.__proto__ || Object.getPrototypeOf(NewPost)).call(this, props));
 
-    console.log(props);
-    _this.state = { postText: null };
+    _this.state = { value: null };
+
+    _this.handleChange = _this.handleChange.bind(_this);
+    _this.handleSubmit = _this.handleSubmit.bind(_this);
     return _this;
   }
 
-  // addLike = () => {
-  //   let newCount = this.state.likes + 1;
-  //   this.setState({
-  //     likes: newCount,
-  //   });
-  //   fetch(`/posts/updatelikes/${this.props.postId}`, {
-  //     method: "POST",
-  //   });
-  // };
-
-  // componentDidMount = () => {
-  //   fetch(`/posts/viewlikes/${this.props.postId}`)
-  //     .then((response) => response.json())
-  //     .then((responseJson) => {
-  //       this.setState({ likes: responseJson.likes });
-  //     });
-  // };
-
   _createClass(NewPost, [{
-    key: "handleChange",
-    value: function handleChange() {
-      // next steps:
-      // when you add a post, it displays on the page
-      // when you add a post, it goes to the database
-      // the new post is displayed with the other posts from the database.
+    key: 'handleChange',
+    value: function handleChange(event) {
+      this.setState({ value: event.target.value });
     }
   }, {
-    key: "render",
+    key: 'handleSubmit',
+    value: function handleSubmit(event) {
+      console.log('This confirms a new post has been added' + this.state.value);
+      event.preventDefault();
+      fetch('/posts', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(this.state)
+      });
+    }
+
+    // addLike = () => {
+    //   let newCount = this.state.likes + 1;
+    //   this.setState({
+    //     likes: newCount,
+    //   });
+    //   fetch(`/posts/updatelikes/${this.props.postId}`, {
+    //     method: "POST",
+    //   });
+    // };
+
+    // componentDidMount = () => {
+    //   fetch(`/posts/viewlikes/${this.props.postId}`)
+    //     .then((response) => response.json())
+    //     .then((responseJson) => {
+    //       this.setState({ likes: responseJson.likes });
+    //     });
+    // };
+
+    // next steps:
+    // when you add a post, it displays on the page
+    // when you add a post, it goes to the database
+    // the new post is displayed with the other posts from the database.
+
+
+  }, {
+    key: 'render',
     value: function render() {
       return React.createElement(
-        "form",
+        'form',
         { onSubmit: this.handleSubmit },
-        React.createElement("textarea", { rows: "4", cols: "50", value: this.state.value, onChange: this.handleChange }),
-        React.createElement("input", { type: "submit", value: "New Post" })
+        React.createElement('textarea', { rows: '4', cols: '50', value: this.state.value, onChange: this.handleChange }),
+        React.createElement('input', { type: 'submit', value: 'New Post' })
       );
     }
   }]);

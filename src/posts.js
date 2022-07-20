@@ -1,32 +1,11 @@
 "use strict";
 
-class NewPost extends React.Component {
+class Posts extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: null };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    console.log(props);
+    this.state = { postText: null };
   }
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit(event) {
-    console.log('This confirms a new post has been added' + this.state.value);
-    event.preventDefault();
-    fetch('/posts', {
-       method: "POST",
-       headers: {
-        'Content-Type': 'application/json',
-        },
-      body: JSON.stringify(this.state),
-    });
-  }
-
-
-
 
   // addLike = () => {
   //   let newCount = this.state.likes + 1;
@@ -46,11 +25,12 @@ class NewPost extends React.Component {
   //     });
   // };
 
+  handleChange() {
     // next steps:
     // when you add a post, it displays on the page
     // when you add a post, it goes to the database
     // the new post is displayed with the other posts from the database.
-  
+  }
 
   render() {
     return (
@@ -64,5 +44,4 @@ class NewPost extends React.Component {
 
 // in order to render the like button for all posts, we must iterate through all instances of the element
 const domContainer = document.querySelector(".new-post-container")
-ReactDOM.render(<NewPost />, domContainer);
-
+ReactDOM.render(<Posts />, domContainer);

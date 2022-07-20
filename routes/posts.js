@@ -5,7 +5,8 @@ const PostsController = require("../controllers/posts");
 const CommentsController = require("../controllers/comments");
 
 router.get("/", PostsController.Index);
-router.post("/", PostsController.Create);
+// router.post("/", PostsController.Create);
+router.post("/", PostsController.CreateReact);
 router.get("/new", PostsController.New);
 router.post("/delete/:id", PostsController.Delete);
 router.post("/comments/:id", CommentsController.Create);
