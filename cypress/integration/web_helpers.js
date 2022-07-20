@@ -22,3 +22,15 @@ export function submitPost() {
     .type("Example Post from Cypress Testing");
   cy.get("#new-post-form").submit();
 }
+
+export function submitComment() {
+  cy.visit("/posts");
+  cy.get(":nth-child(6)").type("Example comment from Cypress Testing");
+  cy.get(":nth-child(7)").click();
+  cy.get(".posts")
+    .first()
+    .get(".comment-message-text")
+    .last()
+    .should("have.text", "Example comment from Cypress Testing");
+  cy.get(".posts").should("contain", "Example Post from Cypress Testing");
+}
