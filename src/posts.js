@@ -3,45 +3,33 @@
 class Posts extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
-    this.state = { postText: null };
+    this.state = null;
+    console.log(this.state)
   }
 
-  // addLike = () => {
-  //   let newCount = this.state.likes + 1;
-  //   this.setState({
-  //     likes: newCount,
-  //   });
-  //   fetch(`/posts/updatelikes/${this.props.postId}`, {
-  //     method: "POST",
-  //   });
-  // };
-
-  // componentDidMount = () => {
-  //   fetch(`/posts/viewlikes/${this.props.postId}`)
-  //     .then((response) => response.json())
-  //     .then((responseJson) => {
-  //       this.setState({ likes: responseJson.likes });
-  //     });
-  // };
-
-  handleChange() {
-    // next steps:
-    // when you add a post, it displays on the page
-    // when you add a post, it goes to the database
-    // the new post is displayed with the other posts from the database.
-  }
+  componentDidMount = () => {
+    fetch(`/posts/getposts`)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({ 
+          responseJson
+        });
+      });
+  };
 
   render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <textarea rows="4" cols="50" value={this.state.value} onChange={this.handleChange} />
-        <input type="submit" value="New Post" />
-      </form>
-    );
+    if (this.state != null) {
+      return (
+        <ul>
+        {this.state.posts.map(post => (
+          <li class="individual-post" key={post.id}>{post.firstname}</li>
+        ))}
+      </ul>
+      )
+    }
   }
 }
 
 // in order to render the like button for all posts, we must iterate through all instances of the element
-const domContainer = document.querySelector(".new-post-container")
+const domContainer = document.querySelector(".posts-container")
 ReactDOM.render(<Posts />, domContainer);

@@ -16,7 +16,7 @@ var NewPost = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (NewPost.__proto__ || Object.getPrototypeOf(NewPost)).call(this, props));
 
-    _this.state = { value: null };
+    _this.state = { value: "" };
 
     _this.handleChange = _this.handleChange.bind(_this);
     _this.handleSubmit = _this.handleSubmit.bind(_this);
@@ -24,12 +24,12 @@ var NewPost = function (_React$Component) {
   }
 
   _createClass(NewPost, [{
-    key: 'handleChange',
+    key: "handleChange",
     value: function handleChange(event) {
       this.setState({ value: event.target.value });
     }
   }, {
-    key: 'handleSubmit',
+    key: "handleSubmit",
     value: function handleSubmit(event) {
       console.log('This confirms a new post has been added' + this.state.value);
       event.preventDefault();
@@ -56,13 +56,13 @@ var NewPost = function (_React$Component) {
 
 
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       return React.createElement(
-        'form',
+        "form",
         { onSubmit: this.handleSubmit },
-        React.createElement('textarea', { rows: '4', cols: '50', value: this.state.value, onChange: this.handleChange }),
-        React.createElement('input', { type: 'submit', value: 'New Post' })
+        React.createElement("textarea", { rows: "4", cols: "50", value: this.state.value, onChange: this.handleChange }),
+        React.createElement("input", { type: "submit", value: "New Post" })
       );
     }
   }]);

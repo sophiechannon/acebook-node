@@ -16,46 +16,37 @@ var Posts = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Posts.__proto__ || Object.getPrototypeOf(Posts)).call(this, props));
 
-    console.log(props);
-    _this.state = { postText: null };
+    _this.componentDidMount = function () {
+      fetch("/posts/getposts").then(function (response) {
+        return response.json();
+      }).then(function (responseJson) {
+        _this.setState({
+          responseJson: responseJson
+        });
+      });
+    };
+
+    _this.state = null;
+    console.log(_this.state);
     return _this;
   }
 
-  // addLike = () => {
-  //   let newCount = this.state.likes + 1;
-  //   this.setState({
-  //     likes: newCount,
-  //   });
-  //   fetch(`/posts/updatelikes/${this.props.postId}`, {
-  //     method: "POST",
-  //   });
-  // };
-
-  // componentDidMount = () => {
-  //   fetch(`/posts/viewlikes/${this.props.postId}`)
-  //     .then((response) => response.json())
-  //     .then((responseJson) => {
-  //       this.setState({ likes: responseJson.likes });
-  //     });
-  // };
-
   _createClass(Posts, [{
-    key: "handleChange",
-    value: function handleChange() {
-      // next steps:
-      // when you add a post, it displays on the page
-      // when you add a post, it goes to the database
-      // the new post is displayed with the other posts from the database.
-    }
-  }, {
     key: "render",
     value: function render() {
-      return React.createElement(
-        "form",
-        { onSubmit: this.handleSubmit },
-        React.createElement("textarea", { rows: "4", cols: "50", value: this.state.value, onChange: this.handleChange }),
-        React.createElement("input", { type: "submit", value: "New Post" })
-      );
+      if (this.state != null) {
+        return React.createElement(
+          "ul",
+          null,
+          this.state.posts.map(function (post) {
+            return React.createElement(
+              "li",
+              { "class": "individual-post", key: post.id },
+              post.firstname
+            );
+          })
+        );
+      }
     }
   }]);
 
@@ -65,5 +56,5 @@ var Posts = function (_React$Component) {
 // in order to render the like button for all posts, we must iterate through all instances of the element
 
 
-var domContainer = document.querySelector(".new-post-container");
+var domContainer = document.querySelector(".posts-container");
 ReactDOM.render(React.createElement(Posts, null), domContainer);
