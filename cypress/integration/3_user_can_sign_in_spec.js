@@ -8,7 +8,6 @@ describe("Authentication", () => {
     // sign in
     signIn();
 
-    cy.url().should("include", "/posts");
-    cy.contains(".new-post-link", "New post");
+
   });
 });
