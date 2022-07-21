@@ -30,6 +30,8 @@ class Comments extends React.Component {
           body: responseJson,
         });
       });
+      const postComments = this.state.body.posts.forEach(post => post.comments)
+      console.log(postComments)
   }
 
   handleChange(event) {
@@ -66,7 +68,7 @@ class Comments extends React.Component {
         </form>
         <ul className="comments">
           {this.state.body.posts.map((post) => ( 
-            post.comments.map(comment => ("Hello"))
+            post.comments.map(comment => (comment.commentMessage))
             ))
             }
         </ul>

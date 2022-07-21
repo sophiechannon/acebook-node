@@ -48,6 +48,10 @@ var Comments = function (_React$Component) {
           body: responseJson
         });
       });
+      var postComments = this.state.body.posts.forEach(function (post) {
+        return post.comments;
+      });
+      console.log(postComments);
     }
   }, {
     key: "handleChange",
@@ -91,7 +95,7 @@ var Comments = function (_React$Component) {
           { className: "comments" },
           this.state.body.posts.map(function (post) {
             return post.comments.map(function (comment) {
-              return "Hello";
+              return comment.commentMessage;
             });
           })
         )
