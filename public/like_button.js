@@ -59,8 +59,9 @@ var LikeButton = function (_React$Component) {
 }(React.Component);
 
 // in order to render the like button for all posts, we must iterate through all instances of the element
+// document.querySelectorAll(".like-button-container")
+//   .forEach(domContainer => {
+//     ReactDOM.render(<LikeButton {...domContainer.dataset} />, domContainer);
+//   })
 
-
-document.querySelectorAll(".like-button-container").forEach(function (domContainer) {
-  ReactDOM.render(React.createElement(LikeButton, domContainer.dataset), domContainer);
-});
+module.exports = LikeButton;
