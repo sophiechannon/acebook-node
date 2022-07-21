@@ -2,6 +2,20 @@ const Comment = require("../models/comment");
 const Post = require("../models/post");
 
 const CommentsController = {
+  ViewComments: async (req, res) => {
+    const comments = await Comment.find((err, comments) => {
+      if (err) {
+        throw err;
+      }
+    });
+    res.setHeader("Content-Type", "application/json");
+    res.end(
+      JSON.stringify({
+        comments: comments,
+      })
+    );
+  },
+
   CreateReact: async (req, res) => {
     const id = req.params.id;
     req.body = {

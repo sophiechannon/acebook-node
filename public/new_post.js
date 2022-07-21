@@ -18,12 +18,11 @@ var Comments = function (_React$Component) {
 
     _this.componentDidMount = function () {
       _this.fetchData();
-      console.log(_this.state);
     };
 
     _this.state = {
       value: "",
-      body: { posts: [] }
+      body: { comments: [] }
     };
 
     _this.handleChange = _this.handleChange.bind(_this);
@@ -33,10 +32,12 @@ var Comments = function (_React$Component) {
 
   _createClass(Comments, [{
     key: "fetchData",
+
+    // new route for direct access to comments table
     value: function fetchData() {
       var _this2 = this;
 
-      fetch("/posts/getposts", {
+      fetch("/posts/getcomments", {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json"
@@ -48,11 +49,27 @@ var Comments = function (_React$Component) {
           body: responseJson
         });
       });
-      var postComments = this.state.body.posts.forEach(function (post) {
-        return post.comments;
-      });
-      console.log(postComments);
     }
+    //
+    // fetchData() {
+    //   fetch(`/posts/getposts`, {
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Accept: "application/json",
+    //     },
+    //   })
+    //     .then((response) => response.json())
+    //     .then((responseJson) => {
+    //       this.setState({
+    //         body: responseJson,
+    //       });
+    //     });
+    //   const postComments = this.state.body.posts.map(
+    //     (post) => comment.commentMessage
+    //   );
+    //   console.log(postComments);
+    // }
+
   }, {
     key: "handleChange",
     value: function handleChange(event) {
@@ -76,6 +93,8 @@ var Comments = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       return React.createElement(
         "div",
         { "class": "all-comments" },
@@ -93,10 +112,14 @@ var Comments = function (_React$Component) {
         React.createElement(
           "ul",
           { className: "comments" },
-          this.state.body.posts.map(function (post) {
-            return post.comments.map(function (comment) {
-              return comment.commentMessage;
-            });
+          this.state.body.comments.filter(function (comment) {
+            return comment.post == _this3.props.postId;
+          }).map(function (filteredComment) {
+            return React.createElement(
+              "li",
+              { key: filteredComment._id },
+              filteredComment.commentMessage
+            );
           })
         )
       );
@@ -112,30 +135,29 @@ var LikeButton = function (_React$Component2) {
   function LikeButton(props) {
     _classCallCheck(this, LikeButton);
 
-    var _this3 = _possibleConstructorReturn(this, (LikeButton.__proto__ || Object.getPrototypeOf(LikeButton)).call(this, props));
+    var _this4 = _possibleConstructorReturn(this, (LikeButton.__proto__ || Object.getPrototypeOf(LikeButton)).call(this, props));
 
-    _this3.addLike = function () {
-      var newCount = _this3.state.likes + 1;
-      _this3.setState({
+    _this4.addLike = function () {
+      var newCount = _this4.state.likes + 1;
+      _this4.setState({
         likes: newCount
       });
       // Retrieve Likes
-      fetch("/posts/updatelikes/" + _this3.props.postId, {
+      fetch("/posts/updatelikes/" + _this4.props.postId, {
         method: "POST"
       });
     };
 
-    _this3.componentDidMount = function () {
-      fetch("/posts/viewlikes/" + _this3.props.postId).then(function (response) {
+    _this4.componentDidMount = function () {
+      fetch("/posts/viewlikes/" + _this4.props.postId).then(function (response) {
         return response.json();
       }).then(function (responseJson) {
-        _this3.setState({ likes: responseJson.likes });
+        _this4.setState({ likes: responseJson.likes });
       });
     };
 
-    console.log(props);
-    _this3.state = { likes: null };
-    return _this3;
+    _this4.state = { likes: null };
+    return _this4;
   }
 
   // lifecyle method
@@ -162,21 +184,20 @@ var NewPost = function (_React$Component3) {
   function NewPost(props) {
     _classCallCheck(this, NewPost);
 
-    var _this4 = _possibleConstructorReturn(this, (NewPost.__proto__ || Object.getPrototypeOf(NewPost)).call(this, props));
+    var _this5 = _possibleConstructorReturn(this, (NewPost.__proto__ || Object.getPrototypeOf(NewPost)).call(this, props));
 
-    _this4.componentDidMount = function () {
-      _this4.fetchData();
-      console.log(_this4.state);
+    _this5.componentDidMount = function () {
+      _this5.fetchData();
     };
 
-    _this4.state = {
+    _this5.state = {
       value: "",
       body: { posts: [] }
     };
 
-    _this4.handleChange = _this4.handleChange.bind(_this4);
-    _this4.handleSubmit = _this4.handleSubmit.bind(_this4);
-    return _this4;
+    _this5.handleChange = _this5.handleChange.bind(_this5);
+    _this5.handleSubmit = _this5.handleSubmit.bind(_this5);
+    return _this5;
   }
 
   _createClass(NewPost, [{
@@ -187,7 +208,7 @@ var NewPost = function (_React$Component3) {
   }, {
     key: "fetchData",
     value: function fetchData() {
-      var _this5 = this;
+      var _this6 = this;
 
       fetch("/posts/getposts", {
         headers: {
@@ -197,7 +218,7 @@ var NewPost = function (_React$Component3) {
       }).then(function (response) {
         return response.json();
       }).then(function (responseJson) {
-        _this5.setState({
+        _this6.setState({
           body: responseJson
         });
       });
@@ -216,7 +237,6 @@ var NewPost = function (_React$Component3) {
       });
       this.setState({ value: "" });
       this.fetchData();
-      console.log(this.state.body.posts);
     }
   }, {
     key: "render",

@@ -5,7 +5,7 @@ class Comments extends React.Component {
     super(props);
     this.state = {
       value: "",
-      body: { posts: [] },
+      body: { comments: [] },
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -14,11 +14,10 @@ class Comments extends React.Component {
 
   componentDidMount = () => {
     this.fetchData();
-    console.log(this.state);
   };
-
+  // new route for direct access to comments table
   fetchData() {
-    fetch(`/posts/getposts`, {
+    fetch(`/posts/getcomments`, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -30,9 +29,26 @@ class Comments extends React.Component {
           body: responseJson,
         });
       });
-      const postComments = this.state.body.posts.forEach(post => post.comments)
-      console.log(postComments)
   }
+  //
+  // fetchData() {
+  //   fetch(`/posts/getposts`, {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((responseJson) => {
+  //       this.setState({
+  //         body: responseJson,
+  //       });
+  //     });
+  //   const postComments = this.state.body.posts.map(
+  //     (post) => comment.commentMessage
+  //   );
+  //   console.log(postComments);
+  // }
 
   handleChange(event) {
     this.setState({ value: event.target.value });
@@ -67,10 +83,13 @@ class Comments extends React.Component {
           <input type="submit" value="New Comment" />
         </form>
         <ul className="comments">
-          {this.state.body.posts.map((post) => ( 
-            post.comments.map(comment => (comment.commentMessage))
-            ))
-            }
+          {this.state.body.comments
+            .filter((comment) => comment.post == this.props.postId)
+            .map((filteredComment) => (
+              <li key={filteredComment._id}>
+                {filteredComment.commentMessage}
+              </li>
+            ))}
         </ul>
       </div>
     );
@@ -80,7 +99,6 @@ class Comments extends React.Component {
 class LikeButton extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = { likes: null };
   }
 
@@ -127,7 +145,6 @@ class NewPost extends React.Component {
 
   componentDidMount = () => {
     this.fetchData();
-    console.log(this.state);
   };
 
   handleChange(event) {
@@ -161,7 +178,6 @@ class NewPost extends React.Component {
     });
     this.setState({ value: "" });
     this.fetchData();
-    console.log(this.state.body.posts);
   }
 
   render() {
