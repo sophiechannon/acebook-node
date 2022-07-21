@@ -160,7 +160,7 @@ var NewPost = function (_React$Component2) {
                 post.message,
                 " "
               ),
-              React.createElement(LikeButton, { postId: props.postId }),
+              React.createElement(LikeButton, { postId: post._id }),
               React.createElement(
                 "ul",
                 { className: "comments" },
