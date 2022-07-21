@@ -48,7 +48,9 @@ var LikeButton = function (_React$Component) {
     value: function render() {
       return React.createElement(
         "button",
-        { "class": "like-button", onClick: this.addLike },
+        {
+          "class": "like-button",
+          onClick: this.addLike },
         "Likes: ",
         this.state.likes
       );
@@ -63,5 +65,3 @@ var LikeButton = function (_React$Component) {
 //   .forEach(domContainer => {
 //     ReactDOM.render(<LikeButton {...domContainer.dataset} />, domContainer);
 //   })
-
-module.exports = LikeButton;

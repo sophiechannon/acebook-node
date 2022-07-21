@@ -8,29 +8,77 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var LikeButton = require('./like_button');
+var LikeButton = function (_React$Component) {
+  _inherits(LikeButton, _React$Component);
 
-var NewPost = function (_React$Component) {
-  _inherits(NewPost, _React$Component);
+  function LikeButton(props) {
+    _classCallCheck(this, LikeButton);
+
+    var _this = _possibleConstructorReturn(this, (LikeButton.__proto__ || Object.getPrototypeOf(LikeButton)).call(this, props));
+
+    _this.addLike = function () {
+      var newCount = _this.state.likes + 1;
+      _this.setState({
+        likes: newCount
+      });
+      // Retrieve Likes
+      fetch("/posts/updatelikes/" + _this.props.postId, {
+        method: "POST"
+      });
+    };
+
+    _this.componentDidMount = function () {
+      fetch("/posts/viewlikes/" + _this.props.postId).then(function (response) {
+        return response.json();
+      }).then(function (responseJson) {
+        _this.setState({ likes: responseJson.likes });
+      });
+    };
+
+    console.log(props);
+    _this.state = { likes: null };
+    return _this;
+  }
+
+  // lifecyle method
+
+
+  _createClass(LikeButton, [{
+    key: "render",
+    value: function render() {
+      return React.createElement(
+        "button",
+        { "class": "like-button", onClick: this.addLike },
+        "Likes: ",
+        this.state.likes
+      );
+    }
+  }]);
+
+  return LikeButton;
+}(React.Component);
+
+var NewPost = function (_React$Component2) {
+  _inherits(NewPost, _React$Component2);
 
   function NewPost(props) {
     _classCallCheck(this, NewPost);
 
-    var _this = _possibleConstructorReturn(this, (NewPost.__proto__ || Object.getPrototypeOf(NewPost)).call(this, props));
+    var _this2 = _possibleConstructorReturn(this, (NewPost.__proto__ || Object.getPrototypeOf(NewPost)).call(this, props));
 
-    _this.componentDidMount = function () {
-      _this.fetchData();
-      console.log(_this.state);
+    _this2.componentDidMount = function () {
+      _this2.fetchData();
+      console.log(_this2.state);
     };
 
-    _this.state = {
+    _this2.state = {
       value: "",
       body: { posts: [] }
     };
 
-    _this.handleChange = _this.handleChange.bind(_this);
-    _this.handleSubmit = _this.handleSubmit.bind(_this);
-    return _this;
+    _this2.handleChange = _this2.handleChange.bind(_this2);
+    _this2.handleSubmit = _this2.handleSubmit.bind(_this2);
+    return _this2;
   }
 
   _createClass(NewPost, [{
@@ -41,7 +89,7 @@ var NewPost = function (_React$Component) {
   }, {
     key: "fetchData",
     value: function fetchData() {
-      var _this2 = this;
+      var _this3 = this;
 
       fetch("/posts/getposts", {
         headers: {
@@ -51,7 +99,7 @@ var NewPost = function (_React$Component) {
       }).then(function (response) {
         return response.json();
       }).then(function (responseJson) {
-        _this2.setState({
+        _this3.setState({
           body: responseJson
         });
       });
@@ -112,7 +160,7 @@ var NewPost = function (_React$Component) {
                 post.message,
                 " "
               ),
-              React.createElement(LikeButton, { postId: props.postID }),
+              React.createElement(LikeButton, { postId: props.postId }),
               React.createElement(
                 "ul",
                 { className: "comments" },

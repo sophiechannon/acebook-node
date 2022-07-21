@@ -28,7 +28,11 @@ class LikeButton extends React.Component {
   };
 
   render() {
-    return <button class="like-button" onClick={this.addLike}>Likes: {this.state.likes}</button>;
+    return <button 
+    class="like-button" 
+    onClick={this.addLike}>
+      Likes: {this.state.likes}
+    </button>;
   }
 }
 
@@ -37,5 +41,3 @@ class LikeButton extends React.Component {
 //   .forEach(domContainer => {
 //     ReactDOM.render(<LikeButton {...domContainer.dataset} />, domContainer);
 //   })
-
-module.exports = LikeButton;

@@ -1,6 +1,36 @@
 "use strict";
 
-const LikeButton = require('./like_button')
+class LikeButton extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log(props);
+    this.state = { likes: null };
+  }
+
+  addLike = () => {
+    let newCount = this.state.likes + 1;
+    this.setState({
+      likes: newCount,
+    });
+    // Retrieve Likes
+    fetch(`/posts/updatelikes/${this.props.postId}`, {
+      method: "POST",
+    });
+  };
+
+  // lifecyle method
+  componentDidMount = () => {
+    fetch(`/posts/viewlikes/${this.props.postId}`)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({ likes: responseJson.likes });
+      });
+  };
+
+  render() {
+    return <button class="like-button" onClick={this.addLike}>Likes: {this.state.likes}</button>;
+  }
+}
 
 class NewPost extends React.Component {
   constructor(props) {
@@ -65,7 +95,7 @@ class NewPost extends React.Component {
             <li key={post._id}>
               <div class="post-author"> {post.firstname} </div><div class="post-date"> Created at: {post.createdAt} </div>
               <div class="post-text"> {post.message} </div>
-              <LikeButton postId={props.postID} />
+              <LikeButton postId={props.postId} />
               <ul className="comments">{post.comments.map(comment => (
                  <li key={comment._id}>
                   {console.log(comment.commentMessage)}
