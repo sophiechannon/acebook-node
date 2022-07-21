@@ -28,13 +28,15 @@ class LikeButton extends React.Component {
   };
 
   render() {
-    return <button class="like-button" onClick={this.addLike}>Likes: {this.state.likes}</button>;
+    return (
+      <button class="like-button" onClick={this.addLike}>
+        Likes: {this.state.likes}
+      </button>
+    );
   }
 }
-
+s;
 // in order to render the like button for all posts, we must iterate through all instances of the element
-document.querySelectorAll(".like-button-container")
-  .forEach(domContainer => {
-    ReactDOM.render(<LikeButton {...domContainer.dataset} />, domContainer);
-  })
-
+document.querySelectorAll(".like-button-container").forEach((domContainer) => {
+  ReactDOM.render(<LikeButton {...domContainer.dataset} />, domContainer);
+});
