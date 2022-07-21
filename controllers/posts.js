@@ -11,11 +11,9 @@ const PostsController = {
         throw err;
       }
     }).populate("comments");
-    const comments = await Comment.find({});
     res.setHeader("Content-Type", "application/json");
     res.end(JSON.stringify({ 
-      posts: posts.reverse(),
-      comments: comments }));
+      posts: posts.reverse()}));
   },
   New: (req, res) => {
     res.render("posts/new", {});

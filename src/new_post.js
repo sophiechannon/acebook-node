@@ -63,7 +63,14 @@ class NewPost extends React.Component {
             <li key={post._id}>
               <div class="post-author"> {post.firstname} </div><div class="post-date"> Created at: {post.createdAt} </div>
               <div class="post-text"> {post.message} </div>
-              <div class="comments"> {post.comments} </div>
+              <ul className="comments">{post.comments.map(comment => (
+                 <li key={comment._id}>
+                  {console.log(comment.commentMessage)}
+                  {comment.commentMessage}
+                 </li>
+              )
+              )}
+              </ul>
             </li>
           ))}
         </ul>

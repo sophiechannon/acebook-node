@@ -111,11 +111,16 @@ var NewPost = function (_React$Component) {
                 " "
               ),
               React.createElement(
-                "div",
-                { "class": "comments" },
-                " ",
-                post.comments,
-                " "
+                "ul",
+                { className: "comments" },
+                post.comments.map(function (comment) {
+                  return React.createElement(
+                    "li",
+                    { key: comment._id },
+                    console.log(comment.commentMessage),
+                    comment.commentMessage
+                  );
+                })
               )
             );
           })
