@@ -16,8 +16,14 @@ var Comments = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Comments.__proto__ || Object.getPrototypeOf(Comments)).call(this, props));
 
+    _this.componentDidMount = function () {
+      _this.fetchData();
+      console.log(_this.state);
+    };
+
     _this.state = {
-      value: ""
+      value: "",
+      body: { posts: [] }
     };
 
     _this.handleChange = _this.handleChange.bind(_this);
@@ -26,6 +32,24 @@ var Comments = function (_React$Component) {
   }
 
   _createClass(Comments, [{
+    key: "fetchData",
+    value: function fetchData() {
+      var _this2 = this;
+
+      fetch("/posts/getposts", {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        }
+      }).then(function (response) {
+        return response.json();
+      }).then(function (responseJson) {
+        _this2.setState({
+          body: responseJson
+        });
+      });
+    }
+  }, {
     key: "handleChange",
     value: function handleChange(event) {
       this.setState({ value: event.target.value });
@@ -33,12 +57,12 @@ var Comments = function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(event) {
-      console.log('This confirms a new comment has been added:' + this.state.value);
+      console.log("This confirms a new comment has been added:" + this.state.value);
       event.preventDefault();
       fetch("/posts/comments/" + this.props.postId, {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json"
         },
         body: JSON.stringify(this.state)
       });
@@ -50,12 +74,26 @@ var Comments = function (_React$Component) {
     value: function render() {
       return React.createElement(
         "div",
-        { "class": "new-comments" },
+        { "class": "all-comments" },
         React.createElement(
           "form",
           { onSubmit: this.handleSubmit },
-          React.createElement("textarea", { rows: "2", cols: "30", value: this.state.value, onChange: this.handleChange }),
+          React.createElement("textarea", {
+            rows: "2",
+            cols: "30",
+            value: this.state.value,
+            onChange: this.handleChange
+          }),
           React.createElement("input", { type: "submit", value: "New Comment" })
+        ),
+        React.createElement(
+          "ul",
+          { className: "comments" },
+          this.state.body.posts.map(function (post) {
+            return post.comments.map(function (comment) {
+              return "Hello";
+            });
+          })
         )
       );
     }
@@ -70,30 +108,30 @@ var LikeButton = function (_React$Component2) {
   function LikeButton(props) {
     _classCallCheck(this, LikeButton);
 
-    var _this2 = _possibleConstructorReturn(this, (LikeButton.__proto__ || Object.getPrototypeOf(LikeButton)).call(this, props));
+    var _this3 = _possibleConstructorReturn(this, (LikeButton.__proto__ || Object.getPrototypeOf(LikeButton)).call(this, props));
 
-    _this2.addLike = function () {
-      var newCount = _this2.state.likes + 1;
-      _this2.setState({
+    _this3.addLike = function () {
+      var newCount = _this3.state.likes + 1;
+      _this3.setState({
         likes: newCount
       });
       // Retrieve Likes
-      fetch("/posts/updatelikes/" + _this2.props.postId, {
+      fetch("/posts/updatelikes/" + _this3.props.postId, {
         method: "POST"
       });
     };
 
-    _this2.componentDidMount = function () {
-      fetch("/posts/viewlikes/" + _this2.props.postId).then(function (response) {
+    _this3.componentDidMount = function () {
+      fetch("/posts/viewlikes/" + _this3.props.postId).then(function (response) {
         return response.json();
       }).then(function (responseJson) {
-        _this2.setState({ likes: responseJson.likes });
+        _this3.setState({ likes: responseJson.likes });
       });
     };
 
     console.log(props);
-    _this2.state = { likes: null };
-    return _this2;
+    _this3.state = { likes: null };
+    return _this3;
   }
 
   // lifecyle method
@@ -120,21 +158,21 @@ var NewPost = function (_React$Component3) {
   function NewPost(props) {
     _classCallCheck(this, NewPost);
 
-    var _this3 = _possibleConstructorReturn(this, (NewPost.__proto__ || Object.getPrototypeOf(NewPost)).call(this, props));
+    var _this4 = _possibleConstructorReturn(this, (NewPost.__proto__ || Object.getPrototypeOf(NewPost)).call(this, props));
 
-    _this3.componentDidMount = function () {
-      _this3.fetchData();
-      console.log(_this3.state);
+    _this4.componentDidMount = function () {
+      _this4.fetchData();
+      console.log(_this4.state);
     };
 
-    _this3.state = {
+    _this4.state = {
       value: "",
       body: { posts: [] }
     };
 
-    _this3.handleChange = _this3.handleChange.bind(_this3);
-    _this3.handleSubmit = _this3.handleSubmit.bind(_this3);
-    return _this3;
+    _this4.handleChange = _this4.handleChange.bind(_this4);
+    _this4.handleSubmit = _this4.handleSubmit.bind(_this4);
+    return _this4;
   }
 
   _createClass(NewPost, [{
@@ -145,17 +183,17 @@ var NewPost = function (_React$Component3) {
   }, {
     key: "fetchData",
     value: function fetchData() {
-      var _this4 = this;
+      var _this5 = this;
 
       fetch("/posts/getposts", {
         headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          "Content-Type": "application/json",
+          Accept: "application/json"
         }
       }).then(function (response) {
         return response.json();
       }).then(function (responseJson) {
-        _this4.setState({
+        _this5.setState({
           body: responseJson
         });
       });
@@ -163,12 +201,12 @@ var NewPost = function (_React$Component3) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(event) {
-      console.log('This confirms a new post has been added:' + this.state.value);
+      console.log("This confirms a new post has been added:" + this.state.value);
       event.preventDefault();
-      fetch('/posts', {
+      fetch("/posts", {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json"
         },
         body: JSON.stringify(this.state)
       });
@@ -185,7 +223,12 @@ var NewPost = function (_React$Component3) {
         React.createElement(
           "form",
           { onSubmit: this.handleSubmit },
-          React.createElement("textarea", { rows: "4", cols: "50", value: this.state.value, onChange: this.handleChange }),
+          React.createElement("textarea", {
+            rows: "4",
+            cols: "50",
+            value: this.state.value,
+            onChange: this.handleChange
+          }),
           React.createElement("input", { type: "submit", value: "New Post" })
         ),
         React.createElement(
@@ -217,19 +260,7 @@ var NewPost = function (_React$Component3) {
                 " "
               ),
               React.createElement(LikeButton, { postId: post._id }),
-              React.createElement(Comments, { postId: post._id }),
-              React.createElement(
-                "ul",
-                { className: "comments" },
-                post.comments.map(function (comment) {
-                  return React.createElement(
-                    "li",
-                    { key: comment._id },
-                    console.log(comment.commentMessage),
-                    comment.commentMessage
-                  );
-                })
-              )
+              React.createElement(Comments, { postId: post._id })
             );
           })
         )
