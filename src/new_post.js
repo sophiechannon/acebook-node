@@ -3,18 +3,41 @@
 class NewPost extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: "" };
+    this.state = { 
+      value: "",
+      body: {posts: []}
+     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount = () => {
+    this.fetchData()
+    console.log(this.state)
+  };
+
   handleChange(event) {
     this.setState({value: event.target.value});
   }
 
+  fetchData() {
+    fetch(`/posts/getposts`, {
+      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({
+        body: responseJson
+    });
+  });
+  }
+
   handleSubmit(event) {
-    console.log('This confirms a new post has been added' + this.state.value);
+    console.log('This confirms a new post has been added:' + this.state.value);
     event.preventDefault();
     fetch('/posts', {
        method: "POST",
@@ -24,31 +47,27 @@ class NewPost extends React.Component {
       body: JSON.stringify(this.state),
     });
     this.setState({value: ""})
+    this.fetchData();
+    console.log(this.state.body.posts)
   }
-
-  // componentDidMount = () => {
-  //   fetch(`/posts/viewlikes/${this.props.postId}`)
-  //     .then((response) => response.json())
-  //     .then((responseJson) => {
-  //       this.setState({ likes: responseJson.likes });
-  //     });
-  // };
-
-    // next steps:
-    // the new post is displayed with the other posts from the database.
-  
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <textarea rows="4" cols="50" value={this.state.value} onChange={this.handleChange} />
-        <input type="submit" value="New Post" />
-      </form>
+      <div class="all-posts">
+        <form onSubmit={this.handleSubmit}>
+          <textarea rows="4" cols="50" value={this.state.value} onChange={this.handleChange} />
+          <input type="submit" value="New Post" />
+        </form>
+        <ul>
+          {this.state.body.posts.map(post => (
+            <li key={post._id}> {post.firstname}, {post.message}, Created at: {post.createdAt} </li>
+          ))}
+        </ul>
+      </div>
     );
   }
 }
 
-// in order to render the like button for all posts, we must iterate through all instances of the element
 const domContainer = document.querySelector(".new-post-container")
 ReactDOM.render(<NewPost />, domContainer);
 
