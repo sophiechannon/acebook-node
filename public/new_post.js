@@ -89,13 +89,34 @@ var NewPost = function (_React$Component) {
             return React.createElement(
               "li",
               { key: post._id },
-              " ",
-              post.firstname,
-              ", ",
-              post.message,
-              ", Created at: ",
-              post.createdAt,
-              " "
+              React.createElement(
+                "div",
+                { "class": "post-author" },
+                " ",
+                post.firstname,
+                " "
+              ),
+              React.createElement(
+                "div",
+                { "class": "post-date" },
+                " Created at: ",
+                post.createdAt,
+                " "
+              ),
+              React.createElement(
+                "div",
+                { "class": "post-text" },
+                " ",
+                post.message,
+                " "
+              ),
+              React.createElement(
+                "div",
+                { "class": "comments" },
+                " ",
+                post.comments,
+                " "
+              )
             );
           })
         )

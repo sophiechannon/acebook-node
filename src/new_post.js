@@ -60,7 +60,11 @@ class NewPost extends React.Component {
         </form>
         <ul>
           {this.state.body.posts.map(post => (
-            <li key={post._id}> {post.firstname}, {post.message}, Created at: {post.createdAt} </li>
+            <li key={post._id}>
+              <div class="post-author"> {post.firstname} </div><div class="post-date"> Created at: {post.createdAt} </div>
+              <div class="post-text"> {post.message} </div>
+              <div class="comments"> {post.comments} </div>
+            </li>
           ))}
         </ul>
       </div>
