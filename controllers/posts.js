@@ -33,16 +33,6 @@ const PostsController = {
       res.send("")
     });
   },
-  // Delete: (req, res) => {
-  //   Post.findOneAndDelete({ _id: req.params.id }).exec(function (err) {
-  //     if (err) {
-  //       console.log(err);
-  //       res.redirect("back");
-  //     } else {
-  //       res.redirect("/posts");
-  //     }
-  //   });
-  // },
   DeleteReact: (req, res) => {
     Post.findOneAndDelete({ _id: req.params.id }).exec(function (err) {
       if (err) {
@@ -51,6 +41,7 @@ const PostsController = {
       res.send("")
     });
   },
+
   ViewLikeReact: (req, res) => {
     Post.findOne({ _id: req.params.id }, function (err, post) {
       res.setHeader("Content-Type", "application/json");

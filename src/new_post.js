@@ -55,19 +55,19 @@ class Comments extends React.Component {
 
   render() {
     return (
-      <div class="all-comments">
+      <div className="all-comments">
         <form onSubmit={this.handleSubmit}>
-          <textarea
+          <div><textarea
             rows="2"
             cols="30"
             value={this.state.value}
             onChange={this.handleChange}
-          />
-          <input type="submit" value="New Comment" />
+          /></div>
+          <div><input type="submit" value="New Comment" /></div>
         </form>
         <ul className="comments">
           {this.state.comments.map((comment) => (
-            <li key={comment._id}>{comment.commentMessage}</li>
+            <li className="comment" key={comment._id}>{comment.commentMessage}</li>
           ))}
         </ul>
       </div>
@@ -103,7 +103,7 @@ class LikeButton extends React.Component {
 
   render() {
     return (
-      <button class="like-button" onClick={this.addLike}>
+      <button className="like-button" onClick={this.addLike}>
         Likes: {this.state.likes}
       </button>
     );
@@ -167,29 +167,31 @@ class NewPost extends React.Component {
 
   render() {
     return (
-      <div class="all-posts">
+      <div className="all-posts">
         <form onSubmit={this.handleSubmit}>
-          <textarea
+          <div><textarea className="new-post-text"
             rows="4"
             cols="50"
             value={this.state.value}
             onChange={this.handleChange}
-          />
-          <input type="submit" value="New Post" />
+          /></div>
+          <div><input type="submit" value="New Post" /></div>
         </form>
-        <ul>
+        <ul className="posts">
           {this.state.body.posts.map((post) => (
-            <li key={post._id}>
-              <div class="post-author"> {post.firstname} </div>
-              <div class="post-date"> Created at: {post.createdAt} </div>
-              <div class="post-text"> {post.message} </div>
+            <li key={post._id} className="post">
+              <div className="post-info">
+                <div className="post-author"> {post.firstname} </div>
+                <div className="post-date"> Created at: {post.createdAt} </div>
+              </div>
+              <div className="post-text"> {post.message} </div>
+              <LikeButton postId={post._id} />
               <button
                 className="delete-button"
                 onClick={(e) => this.removePost(post._id, e)}
               >
                 Delete
               </button>
-              <LikeButton postId={post._id} />
               <Comments postId={post._id} comments={post.comments} />
             </li>
           ))}

@@ -81,17 +81,25 @@ var Comments = function (_React$Component) {
     value: function render() {
       return React.createElement(
         "div",
-        { "class": "all-comments" },
+        { className: "all-comments" },
         React.createElement(
           "form",
           { onSubmit: this.handleSubmit },
-          React.createElement("textarea", {
-            rows: "2",
-            cols: "30",
-            value: this.state.value,
-            onChange: this.handleChange
-          }),
-          React.createElement("input", { type: "submit", value: "New Comment" })
+          React.createElement(
+            "div",
+            null,
+            React.createElement("textarea", {
+              rows: "2",
+              cols: "30",
+              value: this.state.value,
+              onChange: this.handleChange
+            })
+          ),
+          React.createElement(
+            "div",
+            null,
+            React.createElement("input", { type: "submit", value: "New Comment" })
+          )
         ),
         React.createElement(
           "ul",
@@ -99,7 +107,7 @@ var Comments = function (_React$Component) {
           this.state.comments.map(function (comment) {
             return React.createElement(
               "li",
-              { key: comment._id },
+              { className: "comment", key: comment._id },
               comment.commentMessage
             );
           })
@@ -150,7 +158,7 @@ var LikeButton = function (_React$Component2) {
     value: function render() {
       return React.createElement(
         "button",
-        { "class": "like-button", onClick: this.addLike },
+        { className: "like-button", onClick: this.addLike },
         "Likes: ",
         this.state.likes
       );
@@ -242,46 +250,59 @@ var NewPost = function (_React$Component3) {
 
       return React.createElement(
         "div",
-        { "class": "all-posts" },
+        { className: "all-posts" },
         React.createElement(
           "form",
           { onSubmit: this.handleSubmit },
-          React.createElement("textarea", {
-            rows: "4",
-            cols: "50",
-            value: this.state.value,
-            onChange: this.handleChange
-          }),
-          React.createElement("input", { type: "submit", value: "New Post" })
+          React.createElement(
+            "div",
+            null,
+            React.createElement("textarea", { className: "new-post-text",
+              rows: "4",
+              cols: "50",
+              value: this.state.value,
+              onChange: this.handleChange
+            })
+          ),
+          React.createElement(
+            "div",
+            null,
+            React.createElement("input", { type: "submit", value: "New Post" })
+          )
         ),
         React.createElement(
           "ul",
-          null,
+          { className: "posts" },
           this.state.body.posts.map(function (post) {
             return React.createElement(
               "li",
-              { key: post._id },
+              { key: post._id, "class": "post" },
               React.createElement(
                 "div",
-                { "class": "post-author" },
-                " ",
-                post.firstname,
-                " "
+                { className: "post-info" },
+                React.createElement(
+                  "div",
+                  { className: "post-author" },
+                  " ",
+                  post.firstname,
+                  " "
+                ),
+                React.createElement(
+                  "div",
+                  { className: "post-date" },
+                  " Created at: ",
+                  post.createdAt,
+                  " "
+                )
               ),
               React.createElement(
                 "div",
-                { "class": "post-date" },
-                " Created at: ",
-                post.createdAt,
-                " "
-              ),
-              React.createElement(
-                "div",
-                { "class": "post-text" },
+                { className: "post-text" },
                 " ",
                 post.message,
                 " "
               ),
+              React.createElement(LikeButton, { postId: post._id }),
               React.createElement(
                 "button",
                 {
@@ -294,6 +315,7 @@ var NewPost = function (_React$Component3) {
               ),
               React.createElement(LikeButton, { postId: post._id }),
               React.createElement(Comments, { postId: post._id, comments: post.comments })
+
             );
           })
         )
