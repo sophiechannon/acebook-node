@@ -32,13 +32,21 @@ const PostsController = {
       }
     });
   },
-  Delete: (req, res) => {
+  // Delete: (req, res) => {
+  //   Post.findOneAndDelete({ _id: req.params.id }).exec(function (err) {
+  //     if (err) {
+  //       console.log(err);
+  //       res.redirect("back");
+  //     } else {
+  //       res.redirect("/posts");
+  //     }
+  //   });
+  // },
+  DeleteReact: (req, res) => {
     Post.findOneAndDelete({ _id: req.params.id }).exec(function (err) {
       if (err) {
         console.log(err);
-        res.redirect("back");
       } else {
-        res.redirect("/posts");
       }
     });
   },

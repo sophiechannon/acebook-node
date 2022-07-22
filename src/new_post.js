@@ -30,25 +30,6 @@ class Comments extends React.Component {
         });
       });
   }
-  //
-  // fetchData() {
-  //   fetch(`/posts/getposts`, {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Accept: "application/json",
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((responseJson) => {
-  //       this.setState({
-  //         body: responseJson,
-  //       });
-  //     });
-  //   const postComments = this.state.body.posts.map(
-  //     (post) => comment.commentMessage
-  //   );
-  //   console.log(postComments);
-  // }
 
   handleChange(event) {
     this.setState({ value: event.target.value });
@@ -131,6 +112,25 @@ class LikeButton extends React.Component {
   }
 }
 
+class DeleteButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { status: "Delete" };
+  }
+
+  addDelete = () => {
+    fetch(`/posts/deletepost/${this.props.postId}`, {
+      method: "DELETE",
+    });
+    return this.setState({ status: "Delete successful" });
+  };
+
+  render() {
+    const { status } = this.state;
+    return <button onClick={this.addDelete}>{status}</button>;
+  }
+}
+
 class NewPost extends React.Component {
   constructor(props) {
     super(props);
@@ -198,6 +198,7 @@ class NewPost extends React.Component {
               <div class="post-author"> {post.firstname} </div>
               <div class="post-date"> Created at: {post.createdAt} </div>
               <div class="post-text"> {post.message} </div>
+              <DeleteButton postId={post._id} />
               <LikeButton postId={post._id} />
               <Comments postId={post._id} />
             </li>

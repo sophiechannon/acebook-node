@@ -50,26 +50,6 @@ var Comments = function (_React$Component) {
         });
       });
     }
-    //
-    // fetchData() {
-    //   fetch(`/posts/getposts`, {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Accept: "application/json",
-    //     },
-    //   })
-    //     .then((response) => response.json())
-    //     .then((responseJson) => {
-    //       this.setState({
-    //         body: responseJson,
-    //       });
-    //     });
-    //   const postComments = this.state.body.posts.map(
-    //     (post) => comment.commentMessage
-    //   );
-    //   console.log(postComments);
-    // }
-
   }, {
     key: "handleChange",
     value: function handleChange(event) {
@@ -178,26 +158,61 @@ var LikeButton = function (_React$Component2) {
   return LikeButton;
 }(React.Component);
 
-var NewPost = function (_React$Component3) {
-  _inherits(NewPost, _React$Component3);
+var DeleteButton = function (_React$Component3) {
+  _inherits(DeleteButton, _React$Component3);
+
+  function DeleteButton(props) {
+    _classCallCheck(this, DeleteButton);
+
+    var _this5 = _possibleConstructorReturn(this, (DeleteButton.__proto__ || Object.getPrototypeOf(DeleteButton)).call(this, props));
+
+    _this5.addDelete = function () {
+      fetch("/posts/deletepost/" + _this5.props.postId, {
+        method: "DELETE"
+      });
+      return _this5.setState({ status: "Delete successful" });
+    };
+
+    _this5.state = { status: "Delete" };
+    return _this5;
+  }
+
+  _createClass(DeleteButton, [{
+    key: "render",
+    value: function render() {
+      var status = this.state.status;
+
+      return React.createElement(
+        "button",
+        { onClick: this.addDelete },
+        status
+      );
+    }
+  }]);
+
+  return DeleteButton;
+}(React.Component);
+
+var NewPost = function (_React$Component4) {
+  _inherits(NewPost, _React$Component4);
 
   function NewPost(props) {
     _classCallCheck(this, NewPost);
 
-    var _this5 = _possibleConstructorReturn(this, (NewPost.__proto__ || Object.getPrototypeOf(NewPost)).call(this, props));
+    var _this6 = _possibleConstructorReturn(this, (NewPost.__proto__ || Object.getPrototypeOf(NewPost)).call(this, props));
 
-    _this5.componentDidMount = function () {
-      _this5.fetchData();
+    _this6.componentDidMount = function () {
+      _this6.fetchData();
     };
 
-    _this5.state = {
+    _this6.state = {
       value: "",
       body: { posts: [] }
     };
 
-    _this5.handleChange = _this5.handleChange.bind(_this5);
-    _this5.handleSubmit = _this5.handleSubmit.bind(_this5);
-    return _this5;
+    _this6.handleChange = _this6.handleChange.bind(_this6);
+    _this6.handleSubmit = _this6.handleSubmit.bind(_this6);
+    return _this6;
   }
 
   _createClass(NewPost, [{
@@ -208,7 +223,7 @@ var NewPost = function (_React$Component3) {
   }, {
     key: "fetchData",
     value: function fetchData() {
-      var _this6 = this;
+      var _this7 = this;
 
       fetch("/posts/getposts", {
         headers: {
@@ -218,7 +233,7 @@ var NewPost = function (_React$Component3) {
       }).then(function (response) {
         return response.json();
       }).then(function (responseJson) {
-        _this6.setState({
+        _this7.setState({
           body: responseJson
         });
       });
@@ -283,6 +298,7 @@ var NewPost = function (_React$Component3) {
                 post.message,
                 " "
               ),
+              React.createElement(DeleteButton, { postId: post._id }),
               React.createElement(LikeButton, { postId: post._id }),
               React.createElement(Comments, { postId: post._id })
             );

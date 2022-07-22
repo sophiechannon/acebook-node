@@ -44,23 +44,4 @@ describe("Comment model", () => {
       });
     });
   });
-
-  // it("has a post id", () => {
-  //   let post = new Post({
-  //     message: "another message",
-  //     firstname: "Mongo",
-  //     likes: 0,
-  //   });
-
-  //   post.save();
-  //   Post.find((posts) => {
-  //     post = posts[0];
-  //   });
-
-  //   const comment = new Comment({
-  //     message: "another message",
-  //     post: post._id
-  //   });
-  //   expect(comment.post).toEqual(post._id);
-  // });
 });
