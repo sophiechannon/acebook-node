@@ -6,6 +6,7 @@ class Comments extends React.Component {
     this.state = {
       value: "",
       body: { comments: [] },
+      comments: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -13,11 +14,12 @@ class Comments extends React.Component {
   }
 
   componentDidMount = () => {
-    this.fetchData();
+    this.setState({ comments: this.props.comments });
+    // this.fetchData();
   };
   // new route for direct access to comments table
   fetchData() {
-    fetch(`/posts/getcomments`, {
+    fetch(`/posts/getcomments?postID=${this.props.postId}`, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -26,7 +28,7 @@ class Comments extends React.Component {
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({
-          body: responseJson,
+          comments: responseJson.comments,
         });
       });
   }
@@ -39,16 +41,16 @@ class Comments extends React.Component {
     console.log(
       "This confirms a new comment has been added:" + this.state.value
     );
+
     event.preventDefault();
     fetch(`/posts/comments/${this.props.postId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(this.state),
-    });
+      body: JSON.stringify({ newComment: this.state.value }),
+    }).then(() => this.fetchData());
     this.setState({ value: "" });
-    this.fetchData();
   }
 
   render() {
@@ -64,13 +66,9 @@ class Comments extends React.Component {
           <input type="submit" value="New Comment" />
         </form>
         <ul className="comments">
-          {this.state.body.comments
-            .filter((comment) => comment.post == this.props.postId)
-            .map((filteredComment) => (
-              <li key={filteredComment._id}>
-                {filteredComment.commentMessage}
-              </li>
-            ))}
+          {this.state.comments.map((comment) => (
+            <li key={comment._id}>{comment.commentMessage}</li>
+          ))}
         </ul>
       </div>
     );
@@ -151,9 +149,9 @@ class NewPost extends React.Component {
     e.preventDefault;
     fetch(`/posts/deletepost/${postId}`, {
       method: "DELETE",
-    }).then(this.fetchData());
+    }).then(() => this.fetchData());
   }
-  
+
   handleSubmit(event) {
     console.log("This confirms a new post has been added:" + this.state.value);
     event.preventDefault();
@@ -163,9 +161,8 @@ class NewPost extends React.Component {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(this.state),
-    });
+    }).then(() => this.fetchData());
     this.setState({ value: "" });
-    this.fetchData();
   }
 
   render() {
@@ -186,9 +183,14 @@ class NewPost extends React.Component {
               <div class="post-author"> {post.firstname} </div>
               <div class="post-date"> Created at: {post.createdAt} </div>
               <div class="post-text"> {post.message} </div>
-              <button className="delete-button" onClick={(e) => this.removePost(post._id, e)}>Delete</button>
+              <button
+                className="delete-button"
+                onClick={(e) => this.removePost(post._id, e)}
+              >
+                Delete
+              </button>
               <LikeButton postId={post._id} />
-              <Comments postId={post._id} />
+              <Comments postId={post._id} comments={post.comments} />
             </li>
           ))}
         </ul>

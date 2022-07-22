@@ -17,12 +17,14 @@ var Comments = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Comments.__proto__ || Object.getPrototypeOf(Comments)).call(this, props));
 
     _this.componentDidMount = function () {
-      _this.fetchData();
+      _this.setState({ comments: _this.props.comments });
+      // this.fetchData();
     };
 
     _this.state = {
       value: "",
-      body: { comments: [] }
+      body: { comments: [] },
+      comments: []
     };
 
     _this.handleChange = _this.handleChange.bind(_this);
@@ -37,7 +39,7 @@ var Comments = function (_React$Component) {
     value: function fetchData() {
       var _this2 = this;
 
-      fetch("/posts/getcomments", {
+      fetch("/posts/getcomments?postID=" + this.props.postId, {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json"
@@ -46,7 +48,7 @@ var Comments = function (_React$Component) {
         return response.json();
       }).then(function (responseJson) {
         _this2.setState({
-          body: responseJson
+          comments: responseJson.comments
         });
       });
     }
@@ -58,23 +60,25 @@ var Comments = function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(event) {
+      var _this3 = this;
+
       console.log("This confirms a new comment has been added:" + this.state.value);
+
       event.preventDefault();
       fetch("/posts/comments/" + this.props.postId, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(this.state)
+        body: JSON.stringify({ newComment: this.state.value })
+      }).then(function () {
+        return _this3.fetchData();
       });
       this.setState({ value: "" });
-      this.fetchData();
     }
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
-
       return React.createElement(
         "div",
         { "class": "all-comments" },
@@ -92,13 +96,11 @@ var Comments = function (_React$Component) {
         React.createElement(
           "ul",
           { className: "comments" },
-          this.state.body.comments.filter(function (comment) {
-            return comment.post == _this3.props.postId;
-          }).map(function (filteredComment) {
+          this.state.comments.map(function (comment) {
             return React.createElement(
               "li",
-              { key: filteredComment._id },
-              filteredComment.commentMessage
+              { key: comment._id },
+              comment.commentMessage
             );
           })
         )
@@ -206,14 +208,20 @@ var NewPost = function (_React$Component3) {
   }, {
     key: "removePost",
     value: function removePost(postId, e) {
+      var _this7 = this;
+
       e.preventDefault;
       fetch("/posts/deletepost/" + postId, {
         method: "DELETE"
-      }).then(this.fetchData());
+      }).then(function () {
+        return _this7.fetchData();
+      });
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(event) {
+      var _this8 = this;
+
       console.log("This confirms a new post has been added:" + this.state.value);
       event.preventDefault();
       fetch("/posts", {
@@ -222,14 +230,15 @@ var NewPost = function (_React$Component3) {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(this.state)
+      }).then(function () {
+        return _this8.fetchData();
       });
       this.setState({ value: "" });
-      this.fetchData();
     }
   }, {
     key: "render",
     value: function render() {
-      var _this7 = this;
+      var _this9 = this;
 
       return React.createElement(
         "div",
@@ -275,13 +284,16 @@ var NewPost = function (_React$Component3) {
               ),
               React.createElement(
                 "button",
-                { className: "delete-button", onClick: function onClick(e) {
-                    return _this7.removePost(post._id, e);
-                  } },
+                {
+                  className: "delete-button",
+                  onClick: function onClick(e) {
+                    return _this9.removePost(post._id, e);
+                  }
+                },
                 "Delete"
               ),
               React.createElement(LikeButton, { postId: post._id }),
-              React.createElement(Comments, { postId: post._id })
+              React.createElement(Comments, { postId: post._id, comments: post.comments })
             );
           })
         )
