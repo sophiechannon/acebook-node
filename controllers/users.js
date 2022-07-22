@@ -20,7 +20,7 @@ const UsersController = {
     // set user password to hashed password
     user.password = await bcrypt.hash(user.password, salt);
     // user.save().then((doc) => res.status(201).send(doc));
-    user.save().then(res.status(201).redirect("/posts"));
+    user.save().then(res.status(304).redirect("/posts"));
   },
 };
 

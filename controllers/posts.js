@@ -1,26 +1,26 @@
-const Comment = require("../models/comment");
 const Post = require("../models/post");
 
 const PostsController = {
   Index: async (req, res) => {
+    res.render("posts/index");
+  },
+  ViewPosts: async (req, res) => {
     const posts = await Post.find((err, posts) => {
       if (err) {
         throw err;
       }
     }).populate("comments");
-    const comments = await Comment.find({});
-    res.render("posts/index", {
-      posts: posts.reverse(),
-      comments: comments,
-    });
+    res.setHeader("Content-Type", "application/json");
+    res.end(JSON.stringify({ 
+      posts: posts.reverse()}));
   },
   New: (req, res) => {
     res.render("posts/new", {});
   },
-  Create: (req, res) => {
+  CreateReact: (req, res) => {
     req.body = {
       createdAt: req.body.createdAt,
-      message: req.body.message,
+      message: req.body.value,
       firstname: req.session.user.firstname,
       likes: 0,
       comments: [],
@@ -30,16 +30,15 @@ const PostsController = {
       if (err) {
         throw err;
       }
-      res.status(201).redirect("/posts");
+      res.send("")
     });
   },
-
   DeleteReact: (req, res) => {
     Post.findOneAndDelete({ _id: req.params.id }).exec(function (err) {
       if (err) {
         console.log(err);
-      } else {
       }
+      res.send("")
     });
   },
 
@@ -54,8 +53,8 @@ const PostsController = {
       function (err) {
         if (err) {
           console.log(err);
-        } else {
         }
+        res.send("")
       }
     );
   },
