@@ -3,15 +3,12 @@ const Post = require("../models/post");
 
 const CommentsController = {
   ViewComments: async (req, res) => {
-    const comments = await Comment.find((err) => {
-      if (err) {
-        throw err;
-      }
-    });
+    const id = req.query.postID;
+    const post = await Post.findById(id).populate("comments");
     res.setHeader("Content-Type", "application/json");
     res.end(
       JSON.stringify({
-        comments: comments,
+        comments: post.comments,
       })
     );
   },
@@ -19,7 +16,7 @@ const CommentsController = {
   CreateReact: async (req, res) => {
     const id = req.params.id;
     req.body = {
-      commentMessage: req.body.value,
+      commentMessage: req.body.newComment,
       post: id,
     };
     const comment = new Comment(req.body);
