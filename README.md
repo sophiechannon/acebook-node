@@ -17,7 +17,7 @@ We were given a seed app to work from which used:
 We have also added [React](https://reactjs.org/) components to the application. Plus set up a cloud database on [MongoDB Atlas](https://www.mongodb.com/atlas/database) and used [Heroku](https://www.heroku.com/) to deploy the app.  
 
 ## Diagrams
-Our seed app is set up as below. 
+Our seed app is set up as below.    
 
 <img src="documents/diagrams/overview.png">
 

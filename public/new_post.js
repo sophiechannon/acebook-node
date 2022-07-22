@@ -276,7 +276,7 @@ var NewPost = function (_React$Component3) {
           this.state.body.posts.map(function (post) {
             return React.createElement(
               "li",
-              { key: post._id, "class": "post" },
+              { key: post._id, className: "post" },
               React.createElement(
                 "div",
                 { className: "post-info" },
@@ -313,9 +313,7 @@ var NewPost = function (_React$Component3) {
                 },
                 "Delete"
               ),
-              React.createElement(LikeButton, { postId: post._id }),
               React.createElement(Comments, { postId: post._id, comments: post.comments })
-
             );
           })
         )
