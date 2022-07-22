@@ -112,25 +112,6 @@ class LikeButton extends React.Component {
   }
 }
 
-class DeleteButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { status: "Delete" };
-  }
-
-  addDelete = () => {
-    fetch(`/posts/deletepost/${this.props.postId}`, {
-      method: "DELETE",
-    });
-    return this.setState({ status: "Delete successful" });
-  };
-
-  render() {
-    const { status } = this.state;
-    return <button onClick={this.addDelete}>{status}</button>;
-  }
-}
-
 class NewPost extends React.Component {
   constructor(props) {
     super(props);
@@ -166,6 +147,13 @@ class NewPost extends React.Component {
       });
   }
 
+  removePost(postId, e) {
+    e.preventDefault;
+    fetch(`/posts/deletepost/${postId}`, {
+      method: "DELETE",
+    }).then(this.fetchData());
+  }
+  
   handleSubmit(event) {
     console.log("This confirms a new post has been added:" + this.state.value);
     event.preventDefault();
@@ -198,7 +186,7 @@ class NewPost extends React.Component {
               <div class="post-author"> {post.firstname} </div>
               <div class="post-date"> Created at: {post.createdAt} </div>
               <div class="post-text"> {post.message} </div>
-              <DeleteButton postId={post._id} />
+              <button className="delete-button" onClick={(e) => this.removePost(post._id, e)}>Delete</button>
               <LikeButton postId={post._id} />
               <Comments postId={post._id} />
             </li>

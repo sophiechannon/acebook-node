@@ -158,61 +158,26 @@ var LikeButton = function (_React$Component2) {
   return LikeButton;
 }(React.Component);
 
-var DeleteButton = function (_React$Component3) {
-  _inherits(DeleteButton, _React$Component3);
-
-  function DeleteButton(props) {
-    _classCallCheck(this, DeleteButton);
-
-    var _this5 = _possibleConstructorReturn(this, (DeleteButton.__proto__ || Object.getPrototypeOf(DeleteButton)).call(this, props));
-
-    _this5.addDelete = function () {
-      fetch("/posts/deletepost/" + _this5.props.postId, {
-        method: "DELETE"
-      });
-      return _this5.setState({ status: "Delete successful" });
-    };
-
-    _this5.state = { status: "Delete" };
-    return _this5;
-  }
-
-  _createClass(DeleteButton, [{
-    key: "render",
-    value: function render() {
-      var status = this.state.status;
-
-      return React.createElement(
-        "button",
-        { onClick: this.addDelete },
-        status
-      );
-    }
-  }]);
-
-  return DeleteButton;
-}(React.Component);
-
-var NewPost = function (_React$Component4) {
-  _inherits(NewPost, _React$Component4);
+var NewPost = function (_React$Component3) {
+  _inherits(NewPost, _React$Component3);
 
   function NewPost(props) {
     _classCallCheck(this, NewPost);
 
-    var _this6 = _possibleConstructorReturn(this, (NewPost.__proto__ || Object.getPrototypeOf(NewPost)).call(this, props));
+    var _this5 = _possibleConstructorReturn(this, (NewPost.__proto__ || Object.getPrototypeOf(NewPost)).call(this, props));
 
-    _this6.componentDidMount = function () {
-      _this6.fetchData();
+    _this5.componentDidMount = function () {
+      _this5.fetchData();
     };
 
-    _this6.state = {
+    _this5.state = {
       value: "",
       body: { posts: [] }
     };
 
-    _this6.handleChange = _this6.handleChange.bind(_this6);
-    _this6.handleSubmit = _this6.handleSubmit.bind(_this6);
-    return _this6;
+    _this5.handleChange = _this5.handleChange.bind(_this5);
+    _this5.handleSubmit = _this5.handleSubmit.bind(_this5);
+    return _this5;
   }
 
   _createClass(NewPost, [{
@@ -223,7 +188,7 @@ var NewPost = function (_React$Component4) {
   }, {
     key: "fetchData",
     value: function fetchData() {
-      var _this7 = this;
+      var _this6 = this;
 
       fetch("/posts/getposts", {
         headers: {
@@ -233,10 +198,18 @@ var NewPost = function (_React$Component4) {
       }).then(function (response) {
         return response.json();
       }).then(function (responseJson) {
-        _this7.setState({
+        _this6.setState({
           body: responseJson
         });
       });
+    }
+  }, {
+    key: "removePost",
+    value: function removePost(postId, e) {
+      e.preventDefault;
+      fetch("/posts/deletepost/" + postId, {
+        method: "DELETE"
+      }).then(this.fetchData());
     }
   }, {
     key: "handleSubmit",
@@ -256,6 +229,8 @@ var NewPost = function (_React$Component4) {
   }, {
     key: "render",
     value: function render() {
+      var _this7 = this;
+
       return React.createElement(
         "div",
         { "class": "all-posts" },
@@ -298,7 +273,13 @@ var NewPost = function (_React$Component4) {
                 post.message,
                 " "
               ),
-              React.createElement(DeleteButton, { postId: post._id }),
+              React.createElement(
+                "button",
+                { className: "delete-button", onClick: function onClick(e) {
+                    return _this7.removePost(post._id, e);
+                  } },
+                "Delete"
+              ),
               React.createElement(LikeButton, { postId: post._id }),
               React.createElement(Comments, { postId: post._id })
             );
