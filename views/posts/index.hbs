@@ -2,36 +2,6 @@
 
 <div class="new-post-container"></div>
 
-{{!-- <ul class="posts">
-  {{#each posts}}
-  <table class="post">
-  <li class="post-elements">
-    <tr class="post-text">
-      {{this.message}}, {{this.firstname}}
-      <small class="datestamp">Created at {{this.createdAt}}</small>
-    </tr>
-   <form id="delete-button" action="/posts/delete/{{ this.id }}" method="post">
-      <button class="delete-button">Delete</button>
-    </form>
-    <tr>
-    <form id="like-button" action="/posts/likes/{{this._id}}" method="post">
-      <div class="like-button-container" data-post-id="{{ this._id }}"></div>
-    </form>
-    </tr>
-    <form id="new-comment-form" action="/posts/comments/{{this.id}}" method="post">
-      <input type="text" value="" name="commentmessage">
-      <button class="comment-button">Comment</button>
-    </form>
-    <div class="comment-text">
-      {{#each this.comments}}
-        <li><div class="comment-message-text">{{this.commentMessage}}</div>
-      {{/each}}
-    </div>
-  </li>
-  </table>
-  {{/each}}
-</ul> --}}
-
 <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 

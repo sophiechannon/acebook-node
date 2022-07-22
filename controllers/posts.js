@@ -30,6 +30,7 @@ const PostsController = {
       if (err) {
         throw err;
       }
+      res.send("")
     });
   },
   // Delete: (req, res) => {
@@ -46,8 +47,8 @@ const PostsController = {
     Post.findOneAndDelete({ _id: req.params.id }).exec(function (err) {
       if (err) {
         console.log(err);
-      } else {
       }
+      res.send("")
     });
   },
   ViewLikeReact: (req, res) => {
@@ -62,6 +63,7 @@ const PostsController = {
         if (err) {
           console.log(err);
         }
+        res.send("")
       }
     );
   },

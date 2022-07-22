@@ -3,7 +3,7 @@ const Post = require("../models/post");
 
 const CommentsController = {
   ViewComments: async (req, res) => {
-    const comments = await Comment.find((err, comments) => {
+    const comments = await Comment.find((err) => {
       if (err) {
         throw err;
       }
@@ -26,11 +26,7 @@ const CommentsController = {
     await comment.save();
     const postRelated = await Post.findById(id);
     postRelated.comments.push(comment);
-    await postRelated.save(function (err) {
-      if (err) {
-        console.log(err);
-      }
-    });
+    await postRelated.save(res.send(""));
   },
 };
 
