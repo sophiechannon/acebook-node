@@ -8,8 +8,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var LikeButton = require('./like_button');
-
 var NewPost = function (_React$Component) {
   _inherits(NewPost, _React$Component);
 
@@ -83,50 +81,6 @@ var NewPost = function (_React$Component) {
           { onSubmit: this.handleSubmit },
           React.createElement("textarea", { rows: "4", cols: "50", value: this.state.value, onChange: this.handleChange }),
           React.createElement("input", { type: "submit", value: "New Post" })
-        ),
-        React.createElement(
-          "ul",
-          null,
-          this.state.body.posts.map(function (post) {
-            return React.createElement(
-              "li",
-              { key: post._id },
-              React.createElement(
-                "div",
-                { "class": "post-author" },
-                " ",
-                post.firstname,
-                " "
-              ),
-              React.createElement(
-                "div",
-                { "class": "post-date" },
-                " Created at: ",
-                post.createdAt,
-                " "
-              ),
-              React.createElement(
-                "div",
-                { "class": "post-text" },
-                " ",
-                post.message,
-                " "
-              ),
-              React.createElement(LikeButton, { postId: props.postID }),
-              React.createElement(
-                "ul",
-                { className: "comments" },
-                post.comments.map(function (comment) {
-                  return React.createElement(
-                    "li",
-                    { key: comment._id },
-                    console.log(comment.commentMessage),
-                    comment.commentMessage
-                  );
-                })
-              )
-            );
-          })
         )
       );
     }
@@ -134,6 +88,3 @@ var NewPost = function (_React$Component) {
 
   return NewPost;
 }(React.Component);
-
-var domContainer = document.querySelector(".new-post-container");
-ReactDOM.render(React.createElement(NewPost, null), domContainer);

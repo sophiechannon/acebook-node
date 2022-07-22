@@ -63,5 +63,3 @@ var LikeButton = function (_React$Component) {
 //   .forEach(domContainer => {
 //     ReactDOM.render(<LikeButton {...domContainer.dataset} />, domContainer);
 //   })
-
-module.exports = LikeButton;

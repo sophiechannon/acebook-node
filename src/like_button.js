@@ -38,4 +38,3 @@ class LikeButton extends React.Component {
 //     ReactDOM.render(<LikeButton {...domContainer.dataset} />, domContainer);
 //   })
 
-module.exports = LikeButton;

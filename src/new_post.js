@@ -1,7 +1,5 @@
 "use strict";
 
-const LikeButton = require('./like_button')
-
 class NewPost extends React.Component {
   constructor(props) {
     super(props);
@@ -60,28 +58,9 @@ class NewPost extends React.Component {
           <textarea rows="4" cols="50" value={this.state.value} onChange={this.handleChange} />
           <input type="submit" value="New Post" />
         </form>
-        <ul>
-          {this.state.body.posts.map(post => (
-            <li key={post._id}>
-              <div class="post-author"> {post.firstname} </div><div class="post-date"> Created at: {post.createdAt} </div>
-              <div class="post-text"> {post.message} </div>
-              <LikeButton postId={props.postID} />
-              <ul className="comments">{post.comments.map(comment => (
-                 <li key={comment._id}>
-                  {console.log(comment.commentMessage)}
-                  {comment.commentMessage}
-                 </li>
-              )
-              )}
-              </ul>
-            </li>
-          ))}
-        </ul>
       </div>
     );
   }
 }
 
-const domContainer = document.querySelector(".new-post-container")
-ReactDOM.render(<NewPost />, domContainer);
 
