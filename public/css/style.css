@@ -9,31 +9,56 @@
 
 body {
   background-color: white;
-  padding: 50px;
+  padding: 5px;
   font: 17px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.main-heading {
+  color: #3b5998;
 }
 
 p.welcome {
   color: black;
 }
 
-ul {
+ul.nav {
   list-style-type: none;
-  margin: 5;
-  padding: 0;
   overflow: hidden;
   background-color:  #3b5998;
-  position:relative; 
-  left:1px; 
-  top:2px
+  position: relative; 
 }
 
-li {
+.all-posts {
+  width: 70%;
+  text-align: left;
+  padding: 10px;
+}
+
+
+
+li.navli {
   float: left;
+}
+
+li.post {
+  float: left;
+  border: 2px solid darkslategray;
+  padding: 5px;
+  margin: 5px;
+  width: 80%;
+
 }
 
 .invisible {
   list-style: none;
+}
+
+textarea.new-post-text {
+  padding: 5px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  font-family: monospace;
+  font-size: 16px;
 }
 
 li a {
@@ -57,8 +82,28 @@ li b {
   top:2px
 }
 
+input[type="submit"] {
+  font-size: 12px;
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #3b5998;
+  color: white;
+  border: 0;
+  padding: 0.25em 0.5em; 
+  border-radius: 8px; 
+  position: relative;
+}
+
 li a:hover:not(.active) {
   background-color: lightblue;
+}
+
+.post-author {
+  font-size: 18px;
+  font-weight: bold;
+}
+.post-date {
+  font-size: 12px;
 }
 
 input.nav-buttons {
@@ -116,61 +161,55 @@ input.input-submit:hover {
 
 /* posts */
 
-h1.posts {
-  text-align: center;
-  font: 30px "Lucida Grande", Helvetica, Arial, sans-serif;
-  font-weight: bold;
-
-}
-
 ul.posts {
   list-style-type: none;
   margin: 5;
   padding: 0;
   overflow: hidden;
-  background-color: transparent;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 7px;
-
-  position:relative; 
-  left:1px; 
-  top:2px
+  background-color: white;
+  position: relative; 
 }
 
 
 div.post-text {
-  text-align: center;
-  
-  font: 18px "Lucida Grande", Helvetica, Arial;
-  font-weight: bold;
+  text-align: left;
+  font: 14px sans-serif;
+  border: 1px solid darkslategray;
+  padding: 5px;
+  margin: 5px;
 }
 
-input.new-post-link {
-  width: 200px;
-  position:relative;
-  left: 30px;
+div.post-info {
   background-color: #3b5998;
-  color: white;
-  font: 15px arial,sans-serif;
-  border-radius: 8px;
-  border: none;
+  padding: 5px;
 }
+
+ul.comments {
+  list-style-type: none;
+  margin: 5;
+  padding: 0;
+  overflow: hidden;
+  background-color: white;
+  position: relative; 
+}
+
+li.comment {
+  float: left;
+  border: 1px solid darkslategray;
+  padding: 5px;
+  margin: 5px;
+  width: 80%;
+  font: 12px sans-serif;
+}
+
 
 button {
   width: 60px;
   position:relative;
-  left: 230px;
   background-color: #3b5998;
   color: white;
-  font: 15px arial,sans-serif;
+  font: 12px arial,sans-serif;
   border-radius: 8px;
   border: none;
-  font-size: x-small;
-}
-
-div.post {
-  margin: auto;
-  text-align: center;
-
+  margin: 5px;
 }

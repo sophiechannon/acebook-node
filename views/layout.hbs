@@ -1,41 +1,55 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{title}}</title>
+    <title>Acebook</title>
     <link rel='stylesheet' href='/css/style.css' />
   </head>
 
-  <ul>
-
-  <li><a><form action="/">
-    <input class="nav-buttons" type="submit" value="Home">
-  </form>
- </a></li>
-
-  <li><a><form action="/users/new">
-    <input class="nav-buttons" type="submit" value="Sign Up">
-  </form>
-  </a></li>
-
-
-  <li><a><form action="/sessions/new">
-    <input class="nav-buttons" type="submit" value="Posts">
-  </form>
-  </a></li>
-
-  <li><a><form class="home-butt" action="/sessions/new">
-    <input class="nav-buttons" type="submit" value="Login">
-  </form>
-  </a></li>
-
-   <li><a><form action='/sessions?_method=DELETE' method='POST'>
-    <input class="nav-buttons" type="submit" value="Log Out">
-  </form>
-  </a></li>
-
-</ul>
-
   <body>
+    <div class="main-heading">
+      <h1>Acebook</h1>
+    </div>
+    <ul class="nav">
+      <li class="navli">
+        <a>
+          <form action="/">
+            <input class="nav-buttons" type="submit" value="Home">
+          </form>
+        </a>
+      </li>
+
+      <li class="navli">
+        <a>
+          <form action="/users/new">
+            <input class="nav-buttons" type="submit" value="Sign Up">
+          </form>
+        </a>
+      </li>
+
+      <li class="navli">
+        <a>
+          <form action="/sessions/new">
+            <input class="nav-buttons" type="submit" value="Posts">
+          </form>
+        </a>
+      </li>
+
+      <li class="navli">
+        <a>
+          <form class="home-butt" action="/sessions/new">
+            <input class="nav-buttons" type="submit" value="Login">
+          </form>
+        </a>
+      </li>
+
+      <li class="navli">
+        <a>
+          <form action='/sessions?_method=DELETE' method='POST'>
+          <input class="nav-buttons" type="submit" value="Log Out">
+        </form>
+        </a>
+      </li>
+    </ul>
     {{{body}}}
   </body>
   
