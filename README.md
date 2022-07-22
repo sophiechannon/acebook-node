@@ -1,8 +1,10 @@
 # Acebook
 
-This is a Node.js template for the Acebook engineering project.
+By Team Valero (Abhi, Benjamin, Ed, Jennie, Robi, Sophie)
 
-It uses:
+We used a Node.js template for the Acebook engineering project.
+
+We were given a seed app to work from which used:
 
 - [Express](https://expressjs.com/) web framework for Node.js.
 - [Nodemon](https://nodemon.io/) to reload the server automatically.
@@ -12,65 +14,73 @@ It uses:
 - [Jest](https://jestjs.io/) for testing.
 - [Cypress](https://www.cypress.io/) for end-to-end testing.
 
+We have also added [React](https://reactjs.org/) components to the application. Plus set up a cloud database on [MongoDB Atlas](https://www.mongodb.com/atlas/database) and used [Heroku](https://www.heroku.com/) to deploy the app.  
+
+## Diagrams
+Our seed app is set up as below. 
+
+<img src="documents/diagrams/overview.png">
+
 ## User stories
+Using TDD, we implemented the following user stories:
 
-As a user,
-So I can use Acebook,
-I'm like to be able to register an account.
+As a user,  
+So I can use Acebook,  
+I'd like to be able to register an account.
 
-As a user,
-For a personalised expierence,
+As a user,  
+For a personalised experience,  
 I'd like to be able to log into Acebook.
 
-As a user,
-So that nobody posts on my behalf,
+As a user,  
+So that nobody posts on my behalf,  
 I'd like to be able to log out of Acebook.
 
-As a user,
-So that I can say what's on my mind,
+As a user,  
+So that I can say what's on my mind,  
 I'd like to be able to make a post on the timeline.
 
-As a user,
-So I can see what other people have to say,
-I'd like to be able to view other user's posts on the timeline.
+As a user,  
+So I can see what other people have to say,  
+I'd like to be able to view other users' posts on the timeline.
 
-As a user,
-So I know who said what,
+As a user,  
+So I know who said what,  
 I'd like to see who posted each post.
 
-As a user,
-So I am keeping up with the latest news,
-I'd like to see the time and date when other's have posted.
+As a user,  
+So I am keeping up with the latest news,  
+I'd like to see the time and date when others have posted.
 
-As a user,
-So I see the latest news first,
+As a user,  
+So I see the latest news first,  
 I'd like to see the newest posts first.
 
-As a user,
-So I can retract something I have said,
+As a user,  
+So I can retract something I have said,  
 I'd like to be able to delete a post.
 
-As a user,
-So I can express my appreciation for a post,
+As a user,  
+So I can express my appreciation for a post,  
 I'd like to be able to like a post.
 
-As a user,
-So I can engage with a post,
+As a user,  
+So I can engage with a post,  
 I'd like to be able to comment on posts.
 
-
-As a user,
-So I can read people's life stories clearly,
-I'd like posts to include linebreaks (paragraphs).
-
-As a user,
-so I don't cry inside from the lack of design,
+As a user,  
+So I don't cry inside from the lack of design,  
 I'd like Acebook to be somewhat attractive and well proportioned.
 
+As a user,  
+So I can read people's life stories clearly,  
+I'd like posts to include linebreaks (paragraphs).
 
-## Card wall
+## Project management
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
+We used GitHub Projects to manage our project. 
+
+[View our card wall](https://github.com/sophiegilder/acebook-node/projects/1)
 
 ## Quickstart
 
@@ -140,6 +150,9 @@ so that integration tests do not interact with the development server.
   npm run test:unit         # unit tests only
   npm run test:integration  # integration tests only
   ```
+
+### MongoDB Atlas and Heroku
+Find instructions in the Documents file for setting up a cloud database and deploying to Heroku.
 
 ## MongoDB Connection Errors?
 
