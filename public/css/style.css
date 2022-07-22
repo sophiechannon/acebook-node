@@ -101,9 +101,11 @@ li a:hover:not(.active) {
 .post-author {
   font-size: 18px;
   font-weight: bold;
+  color: white;
 }
 .post-date {
   font-size: 12px;
+  color: white;
 }
 
 input.nav-buttons {
