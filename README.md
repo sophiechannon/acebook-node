@@ -19,7 +19,7 @@ We have also added [React](https://reactjs.org/) components to the application. 
 ## Diagrams
 Our seed app is set up as below. 
 
-
+<img src=".documents/diagrams/overview.png">
 
 ## User stories
 Using TDD, we implemented the following user stories:
